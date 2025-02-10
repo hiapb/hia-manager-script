@@ -80,7 +80,7 @@ uninstall_hia() {
 
 # 设置 `hia` 命令
 install_hia_command() {
-    wget -O /usr/local/bin/hia https://raw.githubusercontent.com/你的GitHub用户名/hia-manager-script/main/install.sh
+    wget -O /usr/local/bin/hia https://raw.githubusercontent.com/hiapb/hia-manager-script/main/install.sh
     chmod +x /usr/local/bin/hia
 }
 
