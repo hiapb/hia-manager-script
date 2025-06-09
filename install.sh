@@ -1,7 +1,14 @@
 #!/bin/bash
+set -e
 GREEN="\e[32m"
 RED="\e[31m"
 RESET="\e[0m"
+
+install_hia() {
+    wget -O /usr/local/bin/hia https://raw.githubusercontent.com/hiapb/hia-manager-script/main/install.sh
+    chmod +x /usr/local/bin/hia
+    echo -e "${GREEN}安装完成！以后输入 hia 即可启动菜单。${RESET}"
+}
 
 install_dependencies() {
     echo -e "${GREEN}正在安装必要依赖...${RESET}"
@@ -61,8 +68,7 @@ manage_warp() {
 uninstall_hia() {
     echo -e "${RED}正在卸载 HIA 管理脚本...${RESET}"
     rm -f /usr/local/bin/hia
-    rm -f /etc/profile.d/hia.sh
-    echo -e "${GREEN}HIA 管理脚本已卸载！（如用curl方式临时执行，本操作可忽略）${RESET}"
+    echo -e "${GREEN}HIA 管理脚本已卸载！（如临时执行可忽略）${RESET}"
 }
 
 show_menu() {
@@ -78,14 +84,25 @@ show_menu() {
     echo "----------------------------------"
     read -p "请选择操作: " choice
     case "$choice" in
-        1) reinstall_system ;;
+        1) reinstall_system; show_menu ;;
         2) install_gost ;;
-        3) enable_bbr ;;
-        4) manage_warp ;;
-        0) uninstall_hia ;;
+        3) enable_bbr; sleep 2; show_menu ;;
+        4) manage_warp; show_menu ;;
+        0) uninstall_hia; sleep 1; exit 0 ;;
         q) exit 0 ;;
         *) echo -e "${RED}无效选项！${RESET}"; sleep 2; show_menu ;;
     esac
 }
 
-show_menu
+# 判断是作为安装脚本用还是作为 hia 命令用
+if [[ "$0" != "/usr/local/bin/hia" ]]; then
+    # 安装模式
+    install_hia
+    echo -e "${GREEN}立即为你启动菜单面板...${RESET}"
+    sleep 1
+    bash /usr/local/bin/hia
+    exit 0
+else
+    # 直接菜单模式
+    show_menu
+fi
