@@ -21,6 +21,7 @@ reinstall_system() {
     echo "5) Ubuntu 24.04"
     echo "6) Ubuntu 22.04"
     echo "7) Ubuntu 20.04"
+    echo "8) Debian 12(备用推荐)"
     echo "b) 返回"
     read -p "请选择: " os_choice
     case "$os_choice" in
@@ -31,6 +32,7 @@ reinstall_system() {
         5) curl -O https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh && sudo bash reinstall.sh ubuntu 24.04 ;;
         6) curl -O https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh && sudo bash reinstall.sh ubuntu 22.04 ;;
         7) curl -O https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh && sudo bash reinstall.sh ubuntu 20.04 ;;
+        8) curl -sS -O https://raw.githubusercontent.com/leitbogioro/Tools/master/Linux_reinstall/InstallNET.sh && bash InstallNET.sh -debian 12 -pwd 'hia123456' ;;
         b) show_menu ;;
         *) echo -e "${RED}无效选项！${RESET}"; sleep 2; reinstall_system ;;
     esac
