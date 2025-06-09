@@ -4,15 +4,35 @@ GREEN="\e[32m"
 RED="\e[31m"
 RESET="\e[0m"
 
+# 检查当前用户是否为 root
+if [[ $EUID -eq 0 ]]; then
+    TARGET_DIR="/usr/local/bin"
+else
+    TARGET_DIR="$HOME/bin"
+    mkdir -p "$TARGET_DIR"
+    # 自动把 ~/bin 加入 PATH（如果未加入）
+    if [[ ":$PATH:" != *":$HOME/bin:"* ]]; then
+        echo 'export PATH="$PATH:$HOME/bin"' >> "$HOME/.bashrc"
+        export PATH="$PATH:$HOME/bin"
+        echo -e "${GREEN}已将 $HOME/bin 加入 PATH，重开终端生效。${RESET}"
+    fi
+fi
+
 install_hia() {
-    wget -O /usr/local/bin/hia https://raw.githubusercontent.com/hiapb/hia-manager-script/main/install.sh
-    chmod +x /usr/local/bin/hia
+    wget -q -O "$TARGET_DIR/hia" https://raw.githubusercontent.com/hiapb/hia-manager-script/main/install.sh
+    chmod +x "$TARGET_DIR/hia"
     echo -e "${GREEN}安装完成！以后输入 hia 即可启动菜单。${RESET}"
 }
 
 install_dependencies() {
     echo -e "${GREEN}正在安装必要依赖...${RESET}"
-    apt update -y && apt install -y curl wget unzip
+    if command -v apt >/dev/null 2>&1; then
+        apt update -y && apt install -y curl wget unzip
+    elif command -v yum >/dev/null 2>&1; then
+        yum install -y curl wget unzip
+    else
+        echo -e "${RED}不支持的系统，需手动安装 curl wget unzip${RESET}"
+    fi
 }
 
 reinstall_system() {
@@ -67,8 +87,8 @@ manage_warp() {
 
 uninstall_hia() {
     echo -e "${RED}正在卸载 HIA 管理脚本...${RESET}"
-    rm -f /usr/local/bin/hia
-    echo -e "${GREEN}HIA 管理脚本已卸载！（如临时执行可忽略）${RESET}"
+    rm -f "$TARGET_DIR/hia"
+    echo -e "${GREEN}HIA 管理脚本已卸载！"
 }
 
 show_menu() {
@@ -94,15 +114,13 @@ show_menu() {
     esac
 }
 
-# 判断是作为安装脚本用还是作为 hia 命令用
-if [[ "$0" != "/usr/local/bin/hia" ]]; then
-    # 安装模式
+# 判断当前脚本是否是 hia 命令（本体），还是作为安装脚本执行
+if [[ "$0" != "$TARGET_DIR/hia" ]]; then
     install_hia
     echo -e "${GREEN}立即为你启动菜单面板...${RESET}"
     sleep 1
-    bash /usr/local/bin/hia
+    exec "$TARGET_DIR/hia"
     exit 0
 else
-    # 直接菜单模式
     show_menu
 fi
