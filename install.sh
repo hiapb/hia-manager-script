@@ -4,13 +4,11 @@ GREEN="\e[32m"
 RED="\e[31m"
 RESET="\e[0m"
 
-# 检查当前用户是否为 root
 if [[ $EUID -eq 0 ]]; then
     TARGET_DIR="/usr/local/bin"
 else
     TARGET_DIR="$HOME/bin"
     mkdir -p "$TARGET_DIR"
-    # 自动把 ~/bin 加入 PATH（如果未加入）
     if [[ ":$PATH:" != *":$HOME/bin:"* ]]; then
         echo 'export PATH="$PATH:$HOME/bin"' >> "$HOME/.bashrc"
         export PATH="$PATH:$HOME/bin"
@@ -69,6 +67,7 @@ enable_bbr() {
     echo -e "net.ipv4.tcp_congestion_control = bbr" >> /etc/sysctl.conf
     sysctl -p
     echo -e "${GREEN}BBR 和 TCP 设置已成功启用！${RESET}"
+    sleep 2
 }
 
 install_gost() {
@@ -77,7 +76,6 @@ install_gost() {
     bash <(curl -sSL https://raw.githubusercontent.com/hiapb/gost-forward-script/main/install.sh)
     echo -e "${GREEN}GOST V3 安装完成！${RESET}"
     sleep 2
-    show_menu
 }
 
 manage_warp() {
@@ -85,10 +83,50 @@ manage_warp() {
     bash <(curl -Ls https://gitlab.com/rwkgyg/CFwarp/raw/main/CFwarp.sh)
 }
 
+install_xui() {
+    clear
+    echo -e "${GREEN}正在安装 X-UI 面板...${RESET}"
+    bash <(curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh)
+    echo -e "${GREEN}X-UI 安装完成！${RESET}"
+    sleep 2
+}
+
+install_aapanel() {
+    clear
+    echo -e "${GREEN}正在安装国际版宝塔（aapanel）...${RESET}"
+    wget -O install.sh http://www.aapanel.com/script/install-ubuntu_6.0_en.sh && bash install.sh aapanel
+    echo -e "${GREEN}aapanel 安装完成！${RESET}"
+    sleep 2
+}
+
+install_1panel() {
+    clear
+    echo -e "${GREEN}正在安装 1Panel...${RESET}"
+    curl -sSL https://resource.fit2cloud.com/1panel/package/quick_start.sh -o quick_start.sh && bash quick_start.sh
+    echo -e "${GREEN}1Panel 安装完成！${RESET}"
+    sleep 2
+}
+
+install_aurora() {
+    clear
+    echo -e "${GREEN}正在安装极光面板...${RESET}"
+    bash <(curl -fsSL https://raw.githubusercontent.com/Aurora-Admin-Panel/deploy/main/install.sh)
+    echo -e "${GREEN}极光面板安装完成！${RESET}"
+    sleep 2
+}
+
+check_ip_quality() {
+    clear
+    echo -e "${GREEN}正在进行 IP 质量检测...${RESET}"
+    bash <(curl -sL IP.Check.Place)
+    echo -e "${GREEN}IP 质量检测完成！${RESET}"
+    sleep 2
+}
+
 uninstall_hia() {
     echo -e "${RED}正在卸载 HIA 管理脚本...${RESET}"
     rm -f "$TARGET_DIR/hia"
-    echo -e "${GREEN}HIA 管理脚本已卸载！"
+    echo -e "${GREEN}HIA 管理脚本已卸载！（如临时执行可忽略）${RESET}"
 }
 
 show_menu() {
@@ -99,22 +137,31 @@ show_menu() {
     echo "2) 安装 GOST V3 代理"
     echo "3) 开启 BBR 并优化 TCP 设置"
     echo "4) 管理 WARP"
+    echo "5) 安装 X-UI 面板"
+    echo "6) 安装国际版宝塔（aapanel）"
+    echo "7) 安装 1Panel 面板"
+    echo "8) 安装极光面板"
+    echo "9) IP 质量检测"
     echo "0) 卸载 HIA 管理脚本"
     echo "q) 退出"
     echo "----------------------------------"
     read -p "请选择操作: " choice
     case "$choice" in
         1) reinstall_system; show_menu ;;
-        2) install_gost ;;
-        3) enable_bbr; sleep 2; show_menu ;;
+        2) install_gost; show_menu ;;
+        3) enable_bbr; show_menu ;;
         4) manage_warp; show_menu ;;
+        5) install_xui; show_menu ;;
+        6) install_aapanel; show_menu ;;
+        7) install_1panel; show_menu ;;
+        8) install_aurora; show_menu ;;
+        9) check_ip_quality; show_menu ;;
         0) uninstall_hia; sleep 1; exit 0 ;;
         q) exit 0 ;;
         *) echo -e "${RED}无效选项！${RESET}"; sleep 2; show_menu ;;
     esac
 }
 
-# 判断当前脚本是否是 hia 命令（本体），还是作为安装脚本执行
 if [[ "$0" != "$TARGET_DIR/hia" ]]; then
     install_hia
     echo -e "${GREEN}立即为你启动菜单面板...${RESET}"
