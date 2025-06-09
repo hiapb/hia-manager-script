@@ -81,6 +81,15 @@ install_haproxy() {
     exit 0
 }
 
+install_gost() {
+    clear
+    echo -e "${GREEN}正在安装 GOST TCP+UDP 转发管理脚本...${RESET}"
+    bash <(curl -fsSL https://raw.githubusercontent.com/hiapb/hia-gost/main/install.sh)
+    echo -e "${GREEN}GOST TCP+UDP转发脚本安装完成！${RESET}"
+    sleep 2
+    exit 0
+}
+
 manage_warp() {
     echo -e "${GREEN}正在启动 WARP 管理脚本...${RESET}"
     bash <(curl -Ls https://gitlab.com/rwkgyg/CFwarp/raw/main/CFwarp.sh)
@@ -145,27 +154,29 @@ show_menu() {
     echo "----------------------------------"
     echo "1) 重装系统"
     echo "2) 安装 HAProxy TCP转发"
-    echo "3) 开启 BBR 并优化 TCP 设置"
-    echo "4) 管理 WARP"
-    echo "5) 安装 X-UI 面板"
-    echo "6) 安装国际版宝塔（aapanel）"
-    echo "7) 安装 1Panel 面板"
-    echo "8) 安装极光面板"
-    echo "9) IP 质量检测"
+    echo "3) 安装 GOST TCP+UDP转发"
+    echo "4) 开启 BBR 并优化 TCP 设置"
+    echo "5) 管理 WARP"
+    echo "6) 安装 X-UI 面板"
+    echo "7) 安装国际版宝塔（aapanel）"
+    echo "8) 安装 1Panel 面板"
+    echo "9) 安装极光面板"
+    echo "10) IP 质量检测"
     echo "0) 卸载 HIA 管理脚本"
     echo "q) 退出"
     echo "----------------------------------"
     read -p "请选择操作: " choice
     case "$choice" in
         1) reinstall_system ;;
-        2) install_haproxy ;;   # 改为新函数
-        3) enable_bbr ;;
-        4) manage_warp ;;
-        5) install_xui ;;
-        6) install_aapanel ;;
-        7) install_1panel ;;
-        8) install_aurora ;;
-        9) check_ip_quality ;;
+        2) install_haproxy ;;
+        3) install_gost ;;
+        4) enable_bbr ;;
+        5) manage_warp ;;
+        6) install_xui ;;
+        7) install_aapanel ;;
+        8) install_1panel ;;
+        9) install_aurora ;;
+        10) check_ip_quality ;;
         0) uninstall_hia ;;
         q) exit 0 ;;
         *) echo -e "${RED}无效选项！${RESET}"; sleep 2; exit 1 ;;
