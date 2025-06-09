@@ -135,7 +135,7 @@ check_ip_quality() {
 uninstall_hia() {
     echo -e "${RED}正在卸载 HIA 管理脚本...${RESET}"
     rm -f "$TARGET_DIR/hia"
-    echo -e "${GREEN}HIA 管理脚本已卸载！（如临时执行可忽略）${RESET}"
+    echo -e "${GREEN}HIA 管理脚本已卸载！${RESET}"
     exit 0
 }
 
