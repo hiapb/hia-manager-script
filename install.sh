@@ -144,7 +144,7 @@ show_menu() {
     echo -e "${GREEN}=== HIA 一键管理脚本 ===${RESET}"
     echo "----------------------------------"
     echo "1) 重装系统"
-    echo "2) 安装 GOST V3 代理"
+    echo "2) 安装 GOST V3 转发"
     echo "3) 开启 BBR 并优化 TCP 设置"
     echo "4) 管理 WARP"
     echo "5) 安装 X-UI 面板"
