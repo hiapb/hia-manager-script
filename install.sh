@@ -72,11 +72,11 @@ enable_bbr() {
     exit 0
 }
 
-install_gost() {
+install_haproxy() {
     clear
-    echo -e "${GREEN}正在安装 GOST V3...${RESET}"
-    bash <(curl -sSL https://raw.githubusercontent.com/hiapb/gost-forward-script/main/install.sh)
-    echo -e "${GREEN}GOST V3 安装完成！${RESET}"
+    echo -e "${GREEN}正在安装 HAProxy TCP转发管理脚本...${RESET}"
+    bash <(curl -fsSL https://raw.githubusercontent.com/hiapb/Hia-HAProxy/main/install.sh)
+    echo -e "${GREEN}HAProxy TCP转发脚本安装完成！${RESET}"
     sleep 2
     exit 0
 }
@@ -144,7 +144,7 @@ show_menu() {
     echo -e "${GREEN}=== HIA 一键管理脚本 ===${RESET}"
     echo "----------------------------------"
     echo "1) 重装系统"
-    echo "2) 安装 GOST V3 转发"
+    echo "2) 安装 HAProxy TCP转发"
     echo "3) 开启 BBR 并优化 TCP 设置"
     echo "4) 管理 WARP"
     echo "5) 安装 X-UI 面板"
@@ -158,7 +158,7 @@ show_menu() {
     read -p "请选择操作: " choice
     case "$choice" in
         1) reinstall_system ;;
-        2) install_gost ;;
+        2) install_haproxy ;;   # 改为新函数
         3) enable_bbr ;;
         4) manage_warp ;;
         5) install_xui ;;
