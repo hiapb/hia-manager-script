@@ -120,6 +120,13 @@ EOF
     exit 0
 }
 
+install_hipf() {
+    clear
+    echo -e "${GREEN}正在安装 HiaPortFusion (HAProxy+GOST聚合转发脚本)...${RESET}"
+    bash <(curl -fsSL https://raw.githubusercontent.com/hiapb/HiaPortFusion/main/install.sh)
+    exit 0
+}
+
 install_haproxy() {
     clear
     echo -e "${GREEN}正在安装 HAProxy TCP转发管理脚本...${RESET}"
@@ -210,35 +217,37 @@ show_menu() {
     echo -e "${GREEN}=== HIA 一键管理脚本 ===${RESET}"
     echo "----------------------------------"
     echo "1) 重装系统"
-    echo "2) 安装 HAProxy TCP转发"
-    echo "3) 安装 Realm TCP+UDP转发"
-    echo "4) 安装 GOST TCP+UDP转发"
-    echo "5) 开启 BBR 并优化 TCP 设置"
-    echo "6) 管理 WARP"
-    echo "7) 安装 X-UI 面板"
-    echo "8) 安装国际版宝塔（aapanel）"
-    echo "9) 安装 1Panel 面板"
-    echo "10) 安装极光面板"
-    echo "11) IP 质量检测"
+    echo "2) 安装 HiaPortFusion (HAProxy+GOST聚合转发)"
+    echo "3) 安装 HAProxy TCP转发"
+    echo "4) 安装 Realm TCP+UDP转发"
+    echo "5) 安装 GOST TCP+UDP转发"
+    echo "6) 开启 BBR 并优化 TCP 设置"
+    echo "7) 管理 WARP"
+    echo "8) 安装 X-UI 面板"
+    echo "9) 安装国际版宝塔（aapanel）"
+    echo "10) 安装 1Panel 面板"
+    echo "11) 安装极光面板"
+    echo "12) IP 质量检测"
     echo "0) 卸载 HIA 管理脚本"
     echo "q) 退出"
     echo "----------------------------------"
     read -p "请选择操作: " choice
     case "$choice" in
-        1) reinstall_system ;;
-        2) install_haproxy ;;
-        3) install_realm ;;
-        4) install_gost ;;
-        5) enable_bbr ;;
-        6) manage_warp ;;
-        7) install_xui ;;
-        8) install_aapanel ;;
-        9) install_1panel ;;
-        10) install_aurora ;;
-        11) check_ip_quality ;;
-        0) uninstall_hia ;;
-        q) exit 0 ;;
-        *) echo -e "${RED}无效选项！${RESET}"; sleep 2; exit 1 ;;
+        1)  reinstall_system ;;
+        2)  install_hipf ;;
+        3)  install_haproxy ;;
+        4)  install_realm ;;
+        5)  install_gost ;;
+        6)  enable_bbr ;;
+        7)  manage_warp ;;
+        8)  install_xui ;;
+        9)  install_aapanel ;;
+        10) install_1panel ;;
+        11) install_aurora ;;
+        12) check_ip_quality ;;
+        0)  uninstall_hia ;;
+        q)  exit 0 ;;
+        *)  echo -e "${RED}无效选项！${RESET}"; sleep 2; exit 1 ;;
     esac
 }
 
