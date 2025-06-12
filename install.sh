@@ -160,6 +160,12 @@ manage_warp() {
     exit 0
 }
 
+check_ports() {
+    echo -e "${GREEN}正在启动 f服务器http/https端口检测...${RESET}"
+    bash <(curl -fsSL https://raw.githubusercontent.com/hiapb/check-web-ports/main/install.sh)
+    exit 0
+}
+
 install_xui() {
     clear
     echo -e "${GREEN}正在安装 X-UI 面板...${RESET}"
@@ -228,6 +234,7 @@ show_menu() {
     echo "10) 安装 1Panel 面板"
     echo "11) 安装极光面板"
     echo "12) IP 质量检测"
+    echo "13) 服务器 http/https端口检测"
     echo "0) 卸载 HIA 管理脚本"
     echo "q) 退出"
     echo "----------------------------------"
@@ -245,6 +252,7 @@ show_menu() {
         10) install_1panel ;;
         11) install_aurora ;;
         12) check_ip_quality ;;
+        13）check_ports ;;
         0)  uninstall_hia ;;
         q)  exit 0 ;;
         *)  echo -e "${RED}无效选项！${RESET}"; sleep 2; exit 1 ;;
