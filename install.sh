@@ -259,8 +259,8 @@ show_menu() {
         10) install_1panel ;;
         11) install_aurora ;;
         12) check_ip_quality ;;
-        13）check_ports ;;
-        13）nuro_alist ;;
+        13) check_ports ;;
+        14) nuro_alist ;;
         0)  uninstall_hia ;;
         q)  exit 0 ;;
         *)  echo -e "${RED}无效选项！${RESET}"; sleep 2; exit 1 ;;
