@@ -172,6 +172,12 @@ nuro_alist() {
     exit 0
 }
 
+nuro_frp() {
+    echo -e "${GREEN}正在启动 NuroHia · FRP 一键部署&管理菜单...${RESET}"
+    bash <(curl -fsSL https://raw.githubusercontent.com/nuro-hia/nuro-frp/main/install.sh)
+    exit 0
+}
+
 install_xui() {
     clear
     echo -e "${GREEN}正在安装 X-UI 面板...${RESET}"
@@ -242,6 +248,7 @@ show_menu() {
     echo "12) IP 质量检测"
     echo "13) 服务器 http/https端口检测"
     echo "14) NuroHia · Alist 一键部署&管理"
+    echo "15) NuroHia · FRP 一键部署&管理"
     echo "0) 卸载 HIA 管理脚本"
     echo "q) 退出"
     echo "----------------------------------"
@@ -261,6 +268,7 @@ show_menu() {
         12) check_ip_quality ;;
         13) check_ports ;;
         14) nuro_alist ;;
+        15) nuro_frp ;;
         0)  uninstall_hia ;;
         q)  exit 0 ;;
         *)  echo -e "${RED}无效选项！${RESET}"; sleep 2; exit 1 ;;
