@@ -161,8 +161,14 @@ manage_warp() {
 }
 
 check_ports() {
-    echo -e "${GREEN}正在启动 f服务器http/https端口检测...${RESET}"
+    echo -e "${GREEN}正在启动 服务器http/https端口检测...${RESET}"
     bash <(curl -fsSL https://raw.githubusercontent.com/hiapb/check-web-ports/main/install.sh)
+    exit 0
+}
+
+nuro_alist() {
+    echo -e "${GREEN}正在启动 NuroHia · Alist 一键部署&管理菜单...${RESET}"
+    bash <(curl -fsSL https://raw.githubusercontent.com/nuro-hia/nurohia-alist/main/install.sh)
     exit 0
 }
 
@@ -235,6 +241,7 @@ show_menu() {
     echo "11) 安装极光面板"
     echo "12) IP 质量检测"
     echo "13) 服务器 http/https端口检测"
+    echo "14) NuroHia · Alist 一键部署&管理"
     echo "0) 卸载 HIA 管理脚本"
     echo "q) 退出"
     echo "----------------------------------"
@@ -253,6 +260,7 @@ show_menu() {
         11) install_aurora ;;
         12) check_ip_quality ;;
         13）check_ports ;;
+        13）nuro_alist ;;
         0)  uninstall_hia ;;
         q)  exit 0 ;;
         *)  echo -e "${RED}无效选项！${RESET}"; sleep 2; exit 1 ;;
