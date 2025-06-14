@@ -167,14 +167,20 @@ check_ports() {
 }
 
 nuro_alist() {
-    echo -e "${GREEN}正在启动 NuroHia · Alist 一键部署&管理菜单...${RESET}"
+    echo -e "${GREEN}正在启动 Nuro · Alist 一键部署&管理菜单...${RESET}"
     bash <(curl -fsSL https://raw.githubusercontent.com/nuro-hia/nurohia-alist/main/install.sh)
     exit 0
 }
 
 nuro_frp() {
-    echo -e "${GREEN}正在启动 NuroHia · FRP 一键部署&管理菜单...${RESET}"
+    echo -e "${GREEN}正在启动 Nuro · FRP 一键部署&管理菜单...${RESET}"
     bash <(curl -fsSL https://raw.githubusercontent.com/nuro-hia/nuro-frp/main/install.sh)
+    exit 0
+}
+
+nuro_realm_tunnel() {
+    echo -e "${GREEN}正在启动 Nuro · REALM(隧道) 一键部署&管理菜单...${RESET}"
+    bash <(curl -fsSL https://raw.githubusercontent.com/nuro-hia/realm/main/tunnel.sh)
     exit 0
 }
 
@@ -247,8 +253,9 @@ show_menu() {
     echo "11) 安装极光面板"
     echo "12) IP 质量检测"
     echo "13) 服务器 http/https端口检测"
-    echo "14) NuroHia · Alist 一键部署&管理"
-    echo "15) NuroHia · FRP 一键部署&管理"
+    echo "14) Nuro · Alist 一键部署&管理"
+    echo "15) Nuro · FRP 一键部署&管理"
+    echo "16) Nuro · REALM(隧道) 一键部署&管理"
     echo "0) 卸载 HIA 管理脚本"
     echo "q) 退出"
     echo "----------------------------------"
@@ -269,6 +276,7 @@ show_menu() {
         13) check_ports ;;
         14) nuro_alist ;;
         15) nuro_frp ;;
+        16) nuro_realm_tunnel ;;
         0)  uninstall_hia ;;
         q)  exit 0 ;;
         *)  echo -e "${RED}无效选项！${RESET}"; sleep 2; exit 1 ;;
