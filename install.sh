@@ -156,7 +156,7 @@ install_gost() {
 
 manage_warp() {
     echo -e "${GREEN}正在启动 WARP 管理脚本...${RESET}"
-    bash <(curl -Ls https://gitlab.com/rwkgyg/CFwarp/raw/main/CFwarp.sh)
+    bash <(curl -fsSL https://raw.githubusercontent.com/nuro-hia/wg-cf/main/install.sh)
     exit 0
 }
 
