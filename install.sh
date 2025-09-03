@@ -90,16 +90,19 @@ net.ipv4.tcp_sack = 1
 net.ipv4.tcp_fastopen = 3
 net.ipv4.tcp_tw_reuse = 1
 
-net.core.somaxconn = 4096
-net.ipv4.tcp_max_syn_backlog = 4096
+net.core.somaxconn = 65535
+net.ipv4.tcp_max_syn_backlog = 65535
+net.core.netdev_max_backlog = 250000
+
 net.ipv4.tcp_syn_retries = 3
 net.ipv4.tcp_synack_retries = 2
+net.ipv4.tcp_retries1 = 3
+net.ipv4.tcp_retries2 = 8
 
 net.ipv4.ip_local_port_range = 1024 65535
-
 net.ipv4.tcp_ecn = 0
 
-fs.file-max = 6553560
+fs.file-max = 16777216
 vm.swappiness = 10
 # ===== End HIA =====
 EOF
