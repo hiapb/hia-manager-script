@@ -44,6 +44,10 @@ reinstall_system() {
     echo "6) Ubuntu 22.04"
     echo "7) Ubuntu 20.04"
     echo "8) Debian 12(备用推荐)"
+    echo "9) almalinux 9"
+    echo "10) almalinux 8"
+    echo "11) almalinux 8(备用推荐)"
+    echo "12) Debian 13"
     echo "b) 返回"
     read -p "请选择: " os_choice
     case "$os_choice" in
@@ -55,6 +59,10 @@ reinstall_system() {
         6) curl -O https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh && sudo bash reinstall.sh ubuntu 22.04 ;;
         7) curl -O https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh && sudo bash reinstall.sh ubuntu 20.04 ;;
         8) curl -sS -O https://raw.githubusercontent.com/leitbogioro/Tools/master/Linux_reinstall/InstallNET.sh && bash InstallNET.sh -debian 12 -pwd 'hia123456' ;;
+        9) curl -O https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh && sudo bash reinstall.sh almalinux 9 ;;
+        10) curl -O https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh && sudo bash reinstall.sh almalinux 8 ;;
+        11) curl -sS -O https://raw.githubusercontent.com/leitbogioro/Tools/master/Linux_reinstall/InstallNET.sh && bash InstallNET.sh -almalinux 8 -pwd 'hia789hia' ;;
+        12) curl -O https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh && sudo bash reinstall.sh debian 13 ;;
         b) exit 0 ;;
         *) echo -e "${RED}无效选项！${RESET}"; sleep 2; exit 1 ;;
     esac
