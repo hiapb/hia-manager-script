@@ -148,7 +148,6 @@ install_gost() {
     clear
     echo -e "${GREEN}正在安装 GOST TCP+UDP 转发管理脚本...${RESET}"
     bash <(curl -fsSL https://raw.githubusercontent.com/hiapb/hia-gost/main/install.sh)
-    echo -e "${GREEN}GOST TCP+UDP转发脚本安装完成！${RESET}"
     sleep 2
     exit 0
 }
@@ -189,7 +188,6 @@ install_xui() {
     clear
     echo -e "${GREEN}正在安装 X-UI 面板...${RESET}"
     bash <(curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh)
-    echo -e "${GREEN}X-UI 安装完成！${RESET}"
     sleep 2
     exit 0
 }
@@ -198,7 +196,6 @@ install_aapanel() {
     clear
     echo -e "${GREEN}正在安装国际版宝塔（aapanel）...${RESET}"
     wget -O install.sh http://www.aapanel.com/script/install-ubuntu_6.0_en.sh && bash install.sh aapanel
-    echo -e "${GREEN}aapanel 安装完成！${RESET}"
     sleep 2
     exit 0
 }
@@ -206,15 +203,15 @@ install_aapanel() {
 dlam_tunnel(){
     clear
     echo -e "${GREEN}正在安装多啦A梦面板...${RESET}"
-    curl -L https://raw.githubusercontent.com/hiapb/mmm/main/panel_install.sh -o panel_install.sh && chmod +x panel_install.sh && ./panel_install.sh
+    curl -L https://raw.githubusercontent.com/bqlpfy/flux-panel/refs/heads/main/panel_install.sh -o panel_install.sh && chmod +x panel_install.sh && ./panel_install.sh
     sleep 2
     exit 0
 }
 
- uninstall_dlamnode(){
+ manage_dlamnode(){
     clear
-    echo -e "${GREEN}正在卸载多啦A梦节点端...${RESET}"
-    curl -L https://raw.githubusercontent.com/hiapb/mmm/refs/heads/main/install.sh -o install.sh && chmod +x install.sh && ./install.sh
+    echo -e "${GREEN}多啦A梦节点端管理...${RESET}"
+    curl -L https://raw.githubusercontent.com/bqlpfy/flux-panel/refs/heads/main/install.sh -o install.sh && chmod +x install.sh && ./install.sh
     sleep 2
     exit 0
  }
@@ -306,7 +303,7 @@ show_menu() {
         16) nuro_realm_tunnel ;;
         17) install_docker ;;
         18) dlam_tunnel ;;
-        19) uninstall_dlamnode ;;
+        19) manage_dlamnode ;;
         0)  uninstall_hia ;;
         q)  exit 0 ;;
         *)  echo -e "${RED}无效选项！${RESET}"; sleep 2; exit 1 ;;
