@@ -279,7 +279,7 @@ show_menu() {
     echo "16) Nuro · REALM(隧道) 一键部署&管理"
     echo "17) 安装 Docker"
     echo "18) 哆啦A梦面板部署"
-    echo "19) 卸载多啦A梦节点端"
+    echo "19) 多啦A梦节点端管理"
     echo "0) 卸载 HIA 管理脚本"
     echo "q) 退出"
     echo "----------------------------------"
