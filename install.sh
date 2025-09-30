@@ -211,6 +211,13 @@ dlam_tunnel(){
     exit 0
  }
 
+install_docker(){
+    clear
+    echo -e "${GREEN}正在安装 Docker...${RESET}"
+    curl -fsSL https://get.docker.com | bash -s docker
+    sleep 2
+    exit 0
+}
 install_1panel() {
     clear
     echo -e "${GREEN}正在安装 1Panel...${RESET}"
@@ -265,8 +272,9 @@ show_menu() {
     echo "14) Nuro · Alist 一键部署&管理"
     echo "15) Nuro · FRP 一键部署&管理"
     echo "16) Nuro · REALM(隧道) 一键部署&管理"
-    echo "17) 哆啦A梦面板部署"
-    echo "18) 卸载多啦A梦节点端"
+    echo "17) 安装 Docker"
+    echo "18) 哆啦A梦面板部署"
+    echo "19) 卸载多啦A梦节点端"
     echo "0) 卸载 HIA 管理脚本"
     echo "q) 退出"
     echo "----------------------------------"
@@ -288,8 +296,9 @@ show_menu() {
         14) nuro_alist ;;
         15) nuro_frp ;;
         16) nuro_realm_tunnel ;;
-        17) dlam_tunnel ;;
-        18) uninstall_dlamnode ;;
+        17) install_docker ;;
+        18) dlam_tunnel ;;
+        19) uninstall_dlamnode ;;
         0)  uninstall_hia ;;
         q)  exit 0 ;;
         *)  echo -e "${RED}无效选项！${RESET}"; sleep 2; exit 1 ;;
