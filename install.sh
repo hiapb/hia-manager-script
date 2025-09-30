@@ -126,8 +126,6 @@ install_haproxy() {
     clear
     echo -e "${GREEN}正在安装 HAProxy TCP转发管理脚本...${RESET}"
     bash <(curl -fsSL https://raw.githubusercontent.com/hiapb/Hia-HAProxy/main/install.sh)
-    echo -e "${GREEN}HAProxy TCP转发脚本安装完成！${RESET}"
-    sleep 2
     exit 0
 }
 
@@ -135,8 +133,6 @@ install_realm() {
     clear
     echo -e "${GREEN}正在安装 Realm TCP+UDP万能转发脚本...${RESET}"
     bash <(curl -fsSL https://raw.githubusercontent.com/hiapb/hia-realm/main/install.sh)
-    echo -e "${GREEN}Realm 万能转发脚本安装完成！${RESET}"
-    sleep 2
     exit 0
 }
 
@@ -170,12 +166,14 @@ nuro_alist() {
 nuro_frp() {
     echo -e "${GREEN}正在启动 Nuro · FRP 一键部署&管理菜单...${RESET}"
     bash <(curl -fsSL https://raw.githubusercontent.com/nuro-hia/nuro-frp/main/install.sh)
+    sleep 2
     exit 0
 }
 
 nuro_realm_tunnel() {
     echo -e "${GREEN}正在启动 Nuro · REALM(隧道) 一键部署&管理菜单...${RESET}"
     bash <(curl -fsSL https://raw.githubusercontent.com/nuro-hia/realm/main/tunnel.sh)
+    sleep 2
     exit 0
 }
 
@@ -196,6 +194,22 @@ install_aapanel() {
     sleep 2
     exit 0
 }
+
+dlam_tunnel(){
+    clear
+    echo -e "${GREEN}正在安装多啦A梦面板...${RESET}"
+    curl -L https://raw.githubusercontent.com/hiapb/mmm/main/panel_install.sh -o panel_install.sh && chmod +x panel_install.sh && ./panel_install.sh
+    sleep 2
+    exit 0
+}
+
+ uninstall_dlamnode(){
+    clear
+    echo -e "${GREEN}正在卸载多啦A梦节点端...${RESET}"
+    curl -L https://raw.githubusercontent.com/hiapb/mmm/refs/heads/main/install.sh -o install.sh && chmod +x install.sh && ./install.sh
+    sleep 2
+    exit 0
+ }
 
 install_1panel() {
     clear
@@ -251,6 +265,8 @@ show_menu() {
     echo "14) Nuro · Alist 一键部署&管理"
     echo "15) Nuro · FRP 一键部署&管理"
     echo "16) Nuro · REALM(隧道) 一键部署&管理"
+    echo "17) 哆啦A梦面板部署"
+    echo "18) 卸载多啦A梦节点端
     echo "0) 卸载 HIA 管理脚本"
     echo "q) 退出"
     echo "----------------------------------"
@@ -272,6 +288,8 @@ show_menu() {
         14) nuro_alist ;;
         15) nuro_frp ;;
         16) nuro_realm_tunnel ;;
+        17) dlam_tunnel ;;
+        18) uninstall_dlamnode ;;
         0)  uninstall_hia ;;
         q)  exit 0 ;;
         *)  echo -e "${RED}无效选项！${RESET}"; sleep 2; exit 1 ;;
