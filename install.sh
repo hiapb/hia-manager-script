@@ -266,7 +266,7 @@ show_menu() {
     echo "15) Nuro · FRP 一键部署&管理"
     echo "16) Nuro · REALM(隧道) 一键部署&管理"
     echo "17) 哆啦A梦面板部署"
-    echo "18) 卸载多啦A梦节点端
+    echo "18) 卸载多啦A梦节点端"
     echo "0) 卸载 HIA 管理脚本"
     echo "q) 退出"
     echo "----------------------------------"
