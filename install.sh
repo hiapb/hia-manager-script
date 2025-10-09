@@ -269,64 +269,6 @@ EOF
 }
 
 
-
-# ==========================
-# 禁止 Ping
-# ==========================
-disable_ping() {
-    echo -e "${YELLOW}正在安装 iptables 并禁止 Ping ...${RESET}"
-    export DEBIAN_FRONTEND=noninteractive
-    sudo apt-get update -y >/dev/null 2>&1 || true
-    sudo apt-get install -y iptables iptables-persistent netfilter-persistent >/dev/null 2>&1 || true
-
-    # 删除旧规则防重复（不存在会报错，需容错）
-    sudo iptables  -D INPUT -p icmp   --icmp-type echo-request  -j DROP 2>/dev/null || true
-    sudo ip6tables -D INPUT -p icmpv6 --icmpv6-type echo-request -j DROP 2>/dev/null || true
-
-    # 添加禁止 ping 规则（IPv4 + IPv6）
-    sudo iptables  -A INPUT -p icmp   --icmp-type echo-request  -j DROP
-    sudo ip6tables -A INPUT -p icmpv6 --icmpv6-type echo-request -j DROP
-
-    # 保存规则（有 netfilter-persistent 就用它；否则兜底保存）
-    if command -v netfilter-persistent >/dev/null 2>&1; then
-        sudo netfilter-persistent save >/dev/null 2>&1 || true
-    else
-        sudo mkdir -p /etc/iptables
-        sudo sh -c 'iptables-save  > /etc/iptables/rules.v4' || true
-        sudo sh -c 'ip6tables-save > /etc/iptables/rules.v6' || true
-    fi
-
-    echo -e "${GREEN}Ping 已被禁止（ICMP Echo Request 已拦截，含 IPv6）！${RESET}"
-    sleep 2
-    exit 0
-}
-
-# ==========================
-# 恢复 Ping
-# ==========================
-enable_ping() {
-    echo -e "${YELLOW}正在恢复 Ping ...${RESET}"
-
-    # 删除禁止 ping 的规则（不存在时容错）
-    sudo iptables  -D INPUT -p icmp   --icmp-type echo-request  -j DROP 2>/dev/null || true
-    sudo ip6tables -D INPUT -p icmpv6 --icmpv6-type echo-request -j DROP 2>/dev/null || true
-
-    # 保存规则（同上）
-    if command -v netfilter-persistent >/dev/null 2>&1; then
-        sudo netfilter-persistent save >/dev/null 2>&1 || true
-    else
-        sudo mkdir -p /etc/iptables
-        sudo sh -c 'iptables-save  > /etc/iptables/rules.v4' || true
-        sudo sh -c 'ip6tables-save > /etc/iptables/rules.v6' || true
-    fi
-
-    echo -e "${GREEN}Ping 已恢复（允许 ICMP Echo Request，含 IPv6）！${RESET}"
-    sleep 2
-    exit 0
-}
-
-
-
 install_hipf() {
     clear
     echo -e "${GREEN}正在安装 HiaPortFusion (HAProxy+GOST聚合转发脚本)...${RESET}"
@@ -494,8 +436,6 @@ show_menu() {
     echo "19) 多啦A梦节点端管理"
     echo "20) 🧹一键深度清理"
     echo "21) 追加hosts屏蔽项"
-    echo "22) 禁ping"
-    echo "23) 恢复ping"
     echo "0) 卸载 HIA 管理脚本"
     echo "q) 退出"
     echo "----------------------------------"
@@ -522,8 +462,6 @@ show_menu() {
         19) manage_dlamnode ;;
         20) manage_clean ;;
         21) block_sites ;;
-        22) disable_ping ;;
-        23) enable_ping ;;
         0)  uninstall_hia ;;
         q)  exit 0 ;;
         *)  echo -e "${RED}无效选项！${RESET}"; sleep 2; exit 1 ;;
