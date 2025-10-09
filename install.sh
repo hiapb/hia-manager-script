@@ -216,6 +216,14 @@ dlam_tunnel(){
     exit 0
  }
 
+ manage_clean(){
+    clear
+    echo -e "${GREEN}🧹一键深度清理...${RESET}"
+    bash <(curl -fsSL https://raw.githubusercontent.com/hiapb/debian-safe/main/clean.sh)
+    sleep 2
+    exit 0
+ }
+
 install_docker(){
     clear
     echo -e "${GREEN}正在安装 Docker...${RESET}"
@@ -280,6 +288,7 @@ show_menu() {
     echo "17) 安装 Docker"
     echo "18) 哆啦A梦面板部署"
     echo "19) 多啦A梦节点端管理"
+    echo "20) 🧹一键深度清理"
     echo "0) 卸载 HIA 管理脚本"
     echo "q) 退出"
     echo "----------------------------------"
@@ -304,6 +313,7 @@ show_menu() {
         17) install_docker ;;
         18) dlam_tunnel ;;
         19) manage_dlamnode ;;
+        20) manage_clean ;;
         0)  uninstall_hia ;;
         q)  exit 0 ;;
         *)  echo -e "${RED}无效选项！${RESET}"; sleep 2; exit 1 ;;
