@@ -270,6 +270,46 @@ EOF
 
 
 
+# ==========================
+# 禁止 Ping
+# ==========================
+disable_ping() {
+    echo -e "${YELLOW}正在安装 iptables 并禁止 Ping ...${RESET}"
+    sudo apt install -y iptables iptables-persistent >/dev/null 2>&1
+
+    # 删除旧规则防重复
+    sudo iptables -D INPUT -p icmp --icmp-type echo-request -j DROP 2>/dev/null
+
+    # 添加禁止 ping 规则
+    sudo iptables -A INPUT -p icmp --icmp-type echo-request -j DROP
+
+    # 保存规则
+    sudo netfilter-persistent save >/dev/null 2>&1
+
+    echo -e "${GREEN}Ping 已被禁止（ICMP Echo Request 已拦截）！${RESET}"
+    sleep 2
+    exit 0
+}
+
+# ==========================
+# 恢复 Ping
+# ==========================
+enable_ping() {
+    echo -e "${YELLOW}正在恢复 Ping ...${RESET}"
+
+    # 删除禁止 ping 的规则
+    sudo iptables -D INPUT -p icmp --icmp-type echo-request -j DROP 2>/dev/null
+
+    # 保存规则
+    sudo netfilter-persistent save >/dev/null 2>&1
+
+    echo -e "${GREEN}Ping 已恢复（允许 ICMP Echo Request）！${RESET}"
+    sleep 2
+    exit 0
+}
+
+
+
 install_hipf() {
     clear
     echo -e "${GREEN}正在安装 HiaPortFusion (HAProxy+GOST聚合转发脚本)...${RESET}"
@@ -437,6 +477,8 @@ show_menu() {
     echo "19) 多啦A梦节点端管理"
     echo "20) 🧹一键深度清理"
     echo "21) 追加hosts屏蔽项"
+    echo "22) 禁ping"
+    echo "23) 恢复ping"
     echo "0) 卸载 HIA 管理脚本"
     echo "q) 退出"
     echo "----------------------------------"
@@ -463,6 +505,8 @@ show_menu() {
         19) manage_dlamnode ;;
         20) manage_clean ;;
         21) block_sites ;;
+        22) disable_ping ;;
+        23) enable_ping ;;
         0)  uninstall_hia ;;
         q)  exit 0 ;;
         *)  echo -e "${RED}无效选项！${RESET}"; sleep 2; exit 1 ;;
