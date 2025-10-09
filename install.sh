@@ -275,7 +275,8 @@ EOF
 # ==========================
 disable_ping() {
     echo -e "${YELLOW}正在安装 iptables 并禁止 Ping ...${RESET}"
-    sudo apt install -y iptables iptables-persistent >/dev/null 2>&1
+    sudo apt install -y iptables iptables-persistent >/dev/null 2>&1 || true
+
 
     # 删除旧规则防重复
     sudo iptables -D INPUT -p icmp --icmp-type echo-request -j DROP 2>/dev/null
