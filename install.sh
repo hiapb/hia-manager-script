@@ -124,15 +124,20 @@ EOF
 }
 
 
-block_speedtest_sites() {
-    echo -e "${GREEN}正在向 /etc/hosts 追加屏蔽条目...${RESET}"
+block_sites() {
+    echo -e "${GREEN}正在向 /etc/hosts 追加网站屏蔽条目...${RESET}"
 
-    # 先备份 hosts
+    # 1️⃣ 解锁 /etc/hosts
+    sudo chattr -i /etc/hosts 2>/dev/null
+    echo -e "${YELLOW}/etc/hosts 已解锁（允许写入）${RESET}"
+
+    # 2️⃣ 备份现有 hosts
     cp /etc/hosts /etc/hosts.bak
+    echo -e "${BLUE}/etc/hosts 已备份为 /etc/hosts.bak${RESET}"
 
-    # 追加内容
+    # 3️⃣ 追加屏蔽条目
     cat >> /etc/hosts <<EOF
-# ===== Block Speedtest & Bandwidth Sites =====
+# ===== Block Sites =====
 0.0.0.0 falundafa.org  
 0.0.0.0 minghui.org  
 0.0.0.0 epochtimes.com  
@@ -241,8 +246,13 @@ block_speedtest_sites() {
 0.0.0.0 librespeed.org
 # ===== End Block =====
 EOF
+        echo -e "${GREEN}网站屏蔽条目已成功追加！${RESET}"
+    fi
 
-    echo -e "${GREEN}/etc/hosts 已成功追加屏蔽项！${RESET}"
+    # 4️⃣ 重新锁定 /etc/hosts
+    sudo chattr +i /etc/hosts 2>/dev/null
+    echo -e "${GREEN}/etc/hosts 已重新上锁，防止修改！${RESET}"
+
     sleep 1
 }
 
@@ -440,7 +450,7 @@ show_menu() {
         18) dlam_tunnel ;;
         19) manage_dlamnode ;;
         20) manage_clean ;;
-        21) block_speedtest_sites ;;
+        21) block_sites ;;
         0)  uninstall_hia ;;
         q)  exit 0 ;;
         *)  echo -e "${RED}无效选项！${RESET}"; sleep 2; exit 1 ;;
