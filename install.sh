@@ -123,6 +123,131 @@ EOF
     exit 0
 }
 
+
+block_speedtest_sites() {
+    echo -e "${GREEN}正在向 /etc/hosts 追加屏蔽条目...${RESET}"
+
+    # 先备份 hosts
+    cp /etc/hosts /etc/hosts.bak
+
+    # 追加内容
+    cat >> /etc/hosts <<EOF
+# ===== Block Speedtest & Bandwidth Sites =====
+0.0.0.0 falundafa.org  
+0.0.0.0 minghui.org  
+0.0.0.0 epochtimes.com  
+0.0.0.0 ntdtv.com  
+0.0.0.0 voachinese.com  
+0.0.0.0 appledaily.com  
+0.0.0.0 nextdigital.com  
+0.0.0.0 dalailama.com  
+0.0.0.0 nytimes.com  
+0.0.0.0 bloomberg.com  
+0.0.0.0 independent.co.uk  
+0.0.0.0 freetibet.org  
+0.0.0.0 citizenpowerforchina.org  
+0.0.0.0 rfa.org  
+0.0.0.0 bbc.com  
+0.0.0.0 theinitium.com  
+0.0.0.0 tibet.net  
+0.0.0.0 jw.org  
+0.0.0.0 bannedbook.org  
+0.0.0.0 dw.com  
+0.0.0.0 storm.mg  
+0.0.0.0 yam.com  
+0.0.0.0 chinadigitaltimes.net  
+0.0.0.0 ltn.com.tw  
+0.0.0.0 mpweekly.com  
+0.0.0.0 cup.com.hk  
+0.0.0.0 thenewslens.com  
+0.0.0.0 inside.com.tw  
+0.0.0.0 everylittled.com  
+0.0.0.0 cool3c.com  
+0.0.0.0 taketla.zaiko.io  
+0.0.0.0 news.agentm.tw  
+0.0.0.0 sportsv.net  
+0.0.0.0 research.tnlmedia.com  
+0.0.0.0 ad2iction.com  
+0.0.0.0 viad.com.tw  
+0.0.0.0 tnlmedia.com  
+0.0.0.0 becomingaces.com  
+0.0.0.0 pincong.rocks  
+0.0.0.0 flipboard.com  
+0.0.0.0 soundofhope.org  
+0.0.0.0 wenxuecity.com  
+0.0.0.0 aboluowang.com  
+0.0.0.0 2047.name  
+0.0.0.0 shu.best  
+0.0.0.0 shenyunperformingarts.org  
+0.0.0.0 bbc.co.uk  
+0.0.0.0 cirosantilli.com  
+0.0.0.0 wsj.com  
+0.0.0.0 rfi.fr  
+0.0.0.0 chinapress.com.my  
+0.0.0.0 hancel.org  
+0.0.0.0 miraheze.org  
+0.0.0.0 zhuichaguoji.org  
+0.0.0.0 fawanghuihui.org  
+0.0.0.0 hopto.org  
+0.0.0.0 amnesty.org  
+0.0.0.0 hrw.org  
+0.0.0.0 irmct.org  
+0.0.0.0 zhengjian.org  
+0.0.0.0 wujieliulan.com  
+0.0.0.0 dongtaiwang.com  
+0.0.0.0 ultrasurf.us  
+0.0.0.0 yibaochina.com  
+0.0.0.0 roc-taiwan.org  
+0.0.0.0 creaders.net  
+0.0.0.0 upmedia.mg  
+0.0.0.0 ydn.com.tw  
+0.0.0.0 udn.com  
+0.0.0.0 theaustralian.com.au  
+0.0.0.0 voacantonese.com  
+0.0.0.0 voanews.com  
+0.0.0.0 bitterwinter.org  
+0.0.0.0 christianstudy.com  
+0.0.0.0 learnfalungong.com  
+0.0.0.0 usembassy-china.org.cn  
+0.0.0.0 master-li.qi-gong.me  
+0.0.0.0 zhengwunet.org  
+0.0.0.0 modernchinastudies.org  
+0.0.0.0 ninecommentaries.com  
+0.0.0.0 dafahao.com  
+0.0.0.0 shenyuncreations.com  
+0.0.0.0 tgcchinese.org  
+0.0.0.0 botanwang.com  
+0.0.0.0 falungong.org  
+0.0.0.0 freedomhouse.org  
+0.0.0.0 abc.net.au
+
+0.0.0.0 tracker.openbittorrent.com
+0.0.0.0 tracker.opentrackr.org
+0.0.0.0 tracker.torrent.eu.org
+0.0.0.0 tracker.publicbt.com
+0.0.0.0 tracker.coppersurfer.tk
+0.0.0.0 speedtest.net
+0.0.0.0 www.speedtest.net
+0.0.0.0 fast.com
+0.0.0.0 speed.cloudflare.com
+0.0.0.0 fiber.google.com
+0.0.0.0 speedof.me
+0.0.0.0 speedsmart.net
+0.0.0.0 testmy.net
+0.0.0.0 speedcheck.org
+0.0.0.0 internethealthtest.org
+0.0.0.0 openspeedtest.com
+0.0.0.0 bandwidthplace.com
+0.0.0.0 librespeed.org
+# ===== End Block =====
+EOF
+
+    echo -e "${GREEN}/etc/hosts 已成功追加屏蔽项！${RESET}"
+    sleep 1
+}
+
+
+
 install_hipf() {
     clear
     echo -e "${GREEN}正在安装 HiaPortFusion (HAProxy+GOST聚合转发脚本)...${RESET}"
@@ -289,6 +414,7 @@ show_menu() {
     echo "18) 哆啦A梦面板部署"
     echo "19) 多啦A梦节点端管理"
     echo "20) 🧹一键深度清理"
+    echo "21) 追加hosts屏蔽项"
     echo "0) 卸载 HIA 管理脚本"
     echo "q) 退出"
     echo "----------------------------------"
@@ -314,6 +440,7 @@ show_menu() {
         18) dlam_tunnel ;;
         19) manage_dlamnode ;;
         20) manage_clean ;;
+        21) block_speedtest_sites ;;
         0)  uninstall_hia ;;
         q)  exit 0 ;;
         *)  echo -e "${RED}无效选项！${RESET}"; sleep 2; exit 1 ;;
