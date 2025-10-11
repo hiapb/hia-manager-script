@@ -414,6 +414,15 @@ install_XrayR() {
     exit 0
 }
 
+install_openlist(){
+    clear
+    echo -e "${GREEN}正在安装 OpenList...${RESET}"
+    curl -fsSL https://res.oplist.org/script/v4.sh > install-openlist-v4.sh && sudo bash install-openlist-v4.sh
+    sleep 2
+    exit 0
+}
+}
+
 install_aurora() {
     clear
     echo -e "${GREEN}正在安装极光面板...${RESET}"
@@ -466,6 +475,7 @@ show_menu() {
     echo "22) ☁️ 中国云厂商 ASN 封禁管理"
     echo "23) 安装 V2bX"
     echo "24) 安装 XrayR"
+    echo "25) 安装 OpenList"
     echo "0) 卸载 HIA 管理脚本"
     echo "q) 退出"
     echo "----------------------------------"
@@ -495,6 +505,7 @@ show_menu() {
         22) block_asn ;;
         23) install_V2bX ;;
         24) install_XrayR ;;
+        25) install_openlist ;;
         0)  uninstall_hia ;;
         q)  exit 0 ;;
         *)  echo -e "${RED}无效选项！${RESET}"; sleep 2; exit 1 ;;
