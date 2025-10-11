@@ -369,7 +369,14 @@ dlam_tunnel(){
     sleep 2
     exit 0
  }
-
+ 
+block_asn(){
+   clear
+    echo -e "${GREEN}☁️ 中国云厂商 ASN 封禁管理...${RESET}"
+    bash <(curl -fsSL https://raw.githubusercontent.com/hiapb/block_cloud_asn/main/installer.sh)
+    sleep 2
+    exit 0
+}
 install_docker(){
     clear
     echo -e "${GREEN}正在安装 Docker...${RESET}"
@@ -436,6 +443,7 @@ show_menu() {
     echo "19) 多啦A梦节点端管理"
     echo "20) 🧹一键深度清理"
     echo "21) 追加hosts屏蔽项"
+    echo "22) ☁️ 中国云厂商 ASN 封禁管理"
     echo "0) 卸载 HIA 管理脚本"
     echo "q) 退出"
     echo "----------------------------------"
@@ -462,6 +470,7 @@ show_menu() {
         19) manage_dlamnode ;;
         20) manage_clean ;;
         21) block_sites ;;
+        22) block_asn ;;
         0)  uninstall_hia ;;
         q)  exit 0 ;;
         *)  echo -e "${RED}无效选项！${RESET}"; sleep 2; exit 1 ;;
