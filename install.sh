@@ -148,8 +148,12 @@ block_sites() {
     cp /etc/hosts /etc/hosts.bak
     echo -e "${BLUE}/etc/hosts 已备份为 /etc/hosts.bak${RESET}"
 
-    # 3) 追加屏蔽条目（注意用 <<'EOF'，避免特殊字符被解释）
-    cat >> /etc/hosts <<'EOF'
+    # 3) 检查是否已经追加过屏蔽条目
+    if grep -q "# ===== Block Sites =====" /etc/hosts; then
+        echo -e "${YELLOW}屏蔽条目已经追加过，跳过此操作！${RESET}"
+    else
+        # 追加屏蔽条目（注意用 <<'EOF'，避免特殊字符被解释）
+        cat >> /etc/hosts <<'EOF'
 # ===== Block Sites =====
 0.0.0.0 falundafa.org
 0.0.0.0 minghui.org
@@ -259,7 +263,8 @@ block_sites() {
 # ===== End Block =====
 EOF
 
-    echo -e "${GREEN}网站屏蔽条目已成功追加！${RESET}"
+        echo -e "${GREEN}网站屏蔽条目已成功追加！${RESET}"
+    fi
 
     # 4) 重新上锁（非 ext* / 无 chattr 时忽略错误）
     $SUDO chattr +i /etc/hosts 2>/dev/null || true
