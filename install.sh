@@ -422,7 +422,6 @@ install_openlist(){
     exit 0
 }
 
-
 install_aurora() {
     clear
     echo -e "${GREEN}正在安装极光面板...${RESET}"
