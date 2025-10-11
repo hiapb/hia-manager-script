@@ -393,6 +393,24 @@ install_1panel() {
     exit 0
 }
 
+install_V2bX() {
+    clear
+    echo -e "${GREEN}正在安装 V2bX...${RESET}"
+    wget -N https://raw.githubusercontent.com/wyx2685/V2bX-script/master/install.sh && bash install.sh
+    echo -e "${GREEN}V2bX 安装完成！${RESET}"
+    sleep 2
+    exit 0
+}
+
+install_XrayR() {
+    clear
+    echo -e "${GREEN}正在安装 XrayR...${RESET}"
+    wget -N https://raw.githubusercontent.com/XrayR-project/XrayR-release/master/install.sh && bash install.sh
+    echo -e "${GREEN}XrayR 安装完成！${RESET}"
+    sleep 2
+    exit 0
+}
+
 install_aurora() {
     clear
     echo -e "${GREEN}正在安装极光面板...${RESET}"
@@ -444,6 +462,8 @@ show_menu() {
     echo "20) 🧹一键深度清理"
     echo "21) 追加hosts屏蔽项"
     echo "22) ☁️ 中国云厂商 ASN 封禁管理"
+    echo "23) 安装 V2bX"
+    echo "24) 安装 XrayR"
     echo "0) 卸载 HIA 管理脚本"
     echo "q) 退出"
     echo "----------------------------------"
@@ -471,6 +491,8 @@ show_menu() {
         20) manage_clean ;;
         21) block_sites ;;
         22) block_asn ;;
+        23) install_V2bX ;;
+        24) install_XrayR ;;
         0)  uninstall_hia ;;
         q)  exit 0 ;;
         *)  echo -e "${RED}无效选项！${RESET}"; sleep 2; exit 1 ;;
