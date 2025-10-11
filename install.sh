@@ -421,7 +421,7 @@ install_openlist(){
     sleep 2
     exit 0
 }
-}
+
 
 install_aurora() {
     clear
