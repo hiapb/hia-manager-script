@@ -402,7 +402,6 @@ install_V2bX() {
     clear
     echo -e "${GREEN}正在安装 V2bX...${RESET}"
     wget -N https://raw.githubusercontent.com/wyx2685/V2bX-script/master/install.sh && bash install.sh
-    echo -e "${GREEN}V2bX 安装完成！${RESET}"
     sleep 2
     exit 0
 }
@@ -411,7 +410,6 @@ install_XrayR() {
     clear
     echo -e "${GREEN}正在安装 XrayR...${RESET}"
     wget -N https://raw.githubusercontent.com/XrayR-project/XrayR-release/master/install.sh && bash install.sh
-    echo -e "${GREEN}XrayR 安装完成！${RESET}"
     sleep 2
     exit 0
 }
@@ -420,7 +418,6 @@ install_aurora() {
     clear
     echo -e "${GREEN}正在安装极光面板...${RESET}"
     bash <(curl -fsSL https://raw.githubusercontent.com/Aurora-Admin-Panel/deploy/main/install.sh)
-    echo -e "${GREEN}极光面板安装完成！${RESET}"
     sleep 2
     exit 0
 }
