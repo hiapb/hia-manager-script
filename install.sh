@@ -35,6 +35,14 @@ install_dependencies() {
 
 reinstall_system() {
     clear
+    # 检测是否是 LXC 环境
+    if grep -qaE 'lxc|container' /proc/1/environ 2>/dev/null || grep -qaE 'lxc|container' /proc/1/cgroup 2>/dev/null; then
+        echo -e "${YELLOW}⚠️ 检测到当前环境为 LXC 容器，不支持重装系统！${RESET}"
+        echo -e "${GRAY}此功能仅适用于独立服务器或完整虚拟机环境。${RESET}"
+        echo
+        read -p "按回车返回菜单..." _
+        return
+    fi
     echo -e "${GREEN}=== 选择要安装的系统版本 ===${RESET}"
     echo "1) Debian 12"
     echo "2) Debian 11"
