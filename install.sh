@@ -79,6 +79,13 @@ reinstall_system() {
 }
 
 enable_bbr() {
+    # 检测是否是 LXC 环境
+    if grep -qaE 'lxc|container' /proc/1/environ 2>/dev/null || grep -qaE 'lxc|container' /proc/1/cgroup 2>/dev/null; then
+        echo -e "${YELLOW}⚠️ 检测到当前环境为 LXC 容器，不支持该BBR + TCP 优化！${RESET}"
+        echo -e "${GRAY}此功能仅适用于独立服务器或完整虚拟机环境。${RESET}"
+        echo
+        return
+    fi
     echo -e "${GREEN}正在开启 BBR 并覆盖写入优化参数...${RESET}"
 
     # 先备份原始配置
