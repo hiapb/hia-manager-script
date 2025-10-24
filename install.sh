@@ -351,6 +351,14 @@ nuro_realm_tunnel() {
     exit 0
 }
 
+install_3-xui(){
+    clear
+    echo -e "${GREEN}正在安装 3X-UI 面板...${RESET}"
+    bash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)
+    sleep 2
+    exit 0
+}
+
 install_xui() {
     clear
     echo -e "${GREEN}正在安装 X-UI 面板...${RESET}"
@@ -409,7 +417,6 @@ install_1panel() {
     clear
     echo -e "${GREEN}正在安装 1Panel...${RESET}"
     curl -sSL https://resource.fit2cloud.com/1panel/package/quick_start.sh -o quick_start.sh && bash quick_start.sh
-    echo -e "${GREEN}1Panel 安装完成！${RESET}"
     sleep 2
     exit 0
 }
@@ -426,6 +433,14 @@ install_XrayR() {
     clear
     echo -e "${GREEN}正在安装 XrayR...${RESET}"
     wget -N https://raw.githubusercontent.com/XrayR-project/XrayR-release/master/install.sh && bash install.sh
+    sleep 2
+    exit 0
+}
+
+install_nat(){
+    clear
+    echo -e "${GREEN}NAT 映射管理...${RESET}"
+    bash <(curl -fsSL https://raw.githubusercontent.com/nixore-run/nix-nat/refs/heads/main/nat.sh)
     sleep 2
     exit 0
 }
@@ -450,7 +465,6 @@ check_ip_quality() {
     clear
     echo -e "${GREEN}正在进行 IP 质量检测...${RESET}"
     bash <(curl -sL IP.Check.Place)
-    echo -e "${GREEN}IP 质量检测完成！${RESET}"
     sleep 2
     exit 0
 }
@@ -473,24 +487,26 @@ show_menu() {
     echo "5) 安装 GOST TCP+UDP转发"
     echo "6) 开启 BBR 并优化 TCP 设置"
     echo "7) 管理 WARP"
-    echo "8) 安装 X-UI 面板"
-    echo "9) 安装国际版宝塔（aapanel）"
-    echo "10) 安装 1Panel 面板"
-    echo "11) 安装极光面板"
-    echo "12) IP 质量检测"
-    echo "13) 服务器 http/https端口检测"
-    echo "14) Nuro · Alist 一键部署&管理"
-    echo "15) Nuro · FRP 一键部署&管理"
-    echo "16) Nuro · REALM(隧道) 一键部署&管理"
-    echo "17) 安装 Docker"
+    echo "8) 安装 3X-UI 面板"
+    echo "9) 安装 X-UI 面板"
+    echo "10) 安装国际版宝塔（aapanel）"
+    echo "11) 安装 1Panel 面板"
+    echo "12) 安装极光面板"
+    echo "13) IP 质量检测"
+    echo "14) 服务器 http/https端口检测"
+    echo "15) Nuro · Alist 一键部署&管理"
+    echo "16) Nuro · FRP 一键部署&管理"
+    echo "17) Nuro · REALM(隧道) 一键部署&管理"
+    echo "18) 安装 Docker"
     echo "18) 哆啦A梦面板部署"
-    echo "19) 多啦A梦节点端管理"
-    echo "20) 🧹一键深度清理"
-    echo "21) 追加hosts屏蔽项"
-    echo "22) ☁️ 中国云厂商 ASN 封禁管理"
-    echo "23) 安装 V2bX"
-    echo "24) 安装 XrayR"
-    echo "25) 安装 OpenList"
+    echo "20) 多啦A梦节点端管理"
+    echo "21) 🧹一键深度清理"
+    echo "22) 追加hosts屏蔽项"
+    echo "23) ☁️ 中国云厂商 ASN 封禁管理"
+    echo "24) 安装 V2bX"
+    echo "25) 安装 XrayR"
+    echo "26) 安装 OpenList"
+    echo "27) NAT 映射管理"
     echo "0) 卸载 HIA 管理脚本"
     echo "q) 退出"
     echo "----------------------------------"
@@ -503,24 +519,26 @@ show_menu() {
         5)  install_gost ;;
         6)  enable_bbr ;;
         7)  manage_warp ;;
-        8)  install_xui ;;
-        9)  install_aapanel ;;
-        10) install_1panel ;;
-        11) install_aurora ;;
-        12) check_ip_quality ;;
-        13) check_ports ;;
-        14) nuro_alist ;;
-        15) nuro_frp ;;
-        16) nuro_realm_tunnel ;;
-        17) install_docker ;;
-        18) dlam_tunnel ;;
-        19) manage_dlamnode ;;
-        20) manage_clean ;;
-        21) block_sites ;;
-        22) block_asn ;;
-        23) install_V2bX ;;
-        24) install_XrayR ;;
-        25) install_openlist ;;
+        8)  install_3-xui ;;
+        9)  install_xui ;;
+        10)  install_aapanel ;;
+        11) install_1panel ;;
+        12) install_aurora ;;
+        13) check_ip_quality ;;
+        14) check_ports ;;
+        15) nuro_alist ;;
+        16) nuro_frp ;;
+        17) nuro_realm_tunnel ;;
+        18) install_docker ;;
+        19) dlam_tunnel ;;
+        20) manage_dlamnode ;;
+        21) manage_clean ;;
+        22) block_sites ;;
+        23) block_asn ;;
+        24) install_V2bX ;;
+        25) install_XrayR ;;
+        26) install_openlist ;;
+        27) install_nat ;;
         0)  uninstall_hia ;;
         q)  exit 0 ;;
         *)  echo -e "${RED}无效选项！${RESET}"; sleep 2; exit 1 ;;
