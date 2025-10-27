@@ -56,6 +56,8 @@ reinstall_system() {
     echo "11) almalinux 8"
     echo "12) almalinux 8(备用推荐)"
     echo "13) Debian 13"
+    echo "14) Debian 11(国内)"
+    echo "15) Debian 11(国内备用)"
     echo "b) 返回"
     read -p "请选择: " os_choice
     case "$os_choice" in
@@ -72,6 +74,8 @@ reinstall_system() {
         11) curl -O https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh && sudo bash reinstall.sh almalinux 8 ;;
         12) curl -sS -O https://raw.githubusercontent.com/leitbogioro/Tools/master/Linux_reinstall/InstallNET.sh && bash InstallNET.sh -almalinux 8 -pwd 'hia123456' ;;
         13) curl -O https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh && sudo bash reinstall.sh debian 13 ;;
+        14) curl -O https://git.tccc.eu.org/https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh && sudo bash reinstall.sh debian 11 ;;
+        15) curl -sS -O https://git.tccc.eu.org/https://raw.githubusercontent.com/leitbogioro/Tools/master/Linux_reinstall/InstallNET.sh && bash InstallNET.sh -debian 11 -pwd 'hia123456' ;;
         b) exit 0 ;;
         *) echo -e "${RED}无效选项！${RESET}"; sleep 2; exit 1 ;;
     esac
