@@ -110,28 +110,46 @@ net.ipv4.tcp_wmem = 4096 65536 67108864
 
 net.ipv4.tcp_mtu_probing = 1
 net.ipv4.tcp_frto = 2
-
 net.ipv4.tcp_window_scaling = 1
 net.ipv4.tcp_timestamps = 1
 net.ipv4.tcp_sack = 1
-
 net.ipv4.tcp_fastopen = 3
+net.ipv4.tcp_low_latency = 1
+net.ipv4.tcp_notsent_lowat = 16384
+net.ipv4.tcp_slow_start_after_idle = 0
 net.ipv4.tcp_tw_reuse = 1
-
-net.core.somaxconn = 65535
-net.ipv4.tcp_max_syn_backlog = 65535
-net.core.netdev_max_backlog = 250000
+net.ipv4.tcp_fin_timeout = 10
+net.ipv4.tcp_keepalive_time = 300
+net.ipv4.tcp_keepalive_intvl = 30
+net.ipv4.tcp_keepalive_probes = 5
 
 net.ipv4.tcp_syn_retries = 3
 net.ipv4.tcp_synack_retries = 2
 net.ipv4.tcp_retries1 = 3
 net.ipv4.tcp_retries2 = 8
+net.ipv4.tcp_ecn = 0
+
+net.core.somaxconn = 65535
+net.ipv4.tcp_max_syn_backlog = 65535
+net.core.netdev_max_backlog = 250000
+net.core.netdev_budget = 600
+net.core.netdev_budget_usecs = 2000
+net.core.dev_weight = 1024
+net.core.dev_weight_tx_bias = 2
+net.core.optmem_max = 81920
+
+net.ipv4.udp_rmem_min = 131072
+net.ipv4.udp_wmem_min = 131072
+
+net.core.busy_poll = 100
+net.core.busy_read = 100
 
 net.ipv4.ip_local_port_range = 1024 65535
-net.ipv4.tcp_ecn = 0
 
 fs.file-max = 16777216
 vm.swappiness = 10
+vm.dirty_ratio = 10
+vm.dirty_background_ratio = 5
 # ===== End HIA =====
 EOF
 
