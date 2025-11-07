@@ -520,7 +520,7 @@ show_menu() {
     echo "16) Nuro · FRP 一键部署&管理"
     echo "17) Nuro · REALM(隧道) 一键部署&管理"
     echo "18) 安装 Docker"
-    echo "18) 哆啦A梦面板部署"
+    echo "19) 哆啦A梦面板部署"
     echo "20) 多啦A梦节点端管理"
     echo "21) 🧹一键深度清理"
     echo "22) 追加hosts屏蔽项"
