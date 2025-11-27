@@ -467,6 +467,22 @@ install_nat(){
     exit 0
 }
 
+install_natty(){
+    clear
+    echo -e "${GREEN}NAT 调优...${RESET}"
+    bash <(curl -fsSL https://raw.githubusercontent.com/nuro-hia/tuning/main/install.sh)
+    sleep 2
+    exit 0
+}
+
+install_mtr(){
+    clear
+    echo -e "${GREEN}MTR 自动报告...${RESET}"
+    bash <(curl -Ls https://raw.githubusercontent.com/hiapb/auto-mtr/main/install.sh)
+    sleep 2
+    exit 0
+}
+
 install_openlist(){
     clear
     echo -e "${GREEN}正在安装 OpenList...${RESET}"
@@ -529,6 +545,8 @@ show_menu() {
     echo "25) 安装 XrayR"
     echo "26) 安装 OpenList"
     echo "27) NAT 映射管理"
+    echo "28) NAT 调优"
+    echo "29) MTR 自动报告"
     echo "0) 卸载 HIA 管理脚本"
     echo "q) 退出"
     echo "----------------------------------"
@@ -561,6 +579,8 @@ show_menu() {
         25) install_XrayR ;;
         26) install_openlist ;;
         27) install_nat ;;
+        28) install_natty ;;
+        29) install_mtr ;;
         0)  uninstall_hia ;;
         q)  exit 0 ;;
         *)  echo -e "${RED}无效选项！${RESET}"; sleep 2; exit 1 ;;
