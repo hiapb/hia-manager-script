@@ -477,7 +477,7 @@ install_natty(){
 
 install_mtr(){
     clear
-    echo -e "${GREEN}MTR 自动报告...${RESET}"
+    echo -e "${GREEN}💫 MTR 自动报告...${RESET}"
     bash <(curl -Ls https://raw.githubusercontent.com/hiapb/auto-mtr/main/install.sh)
     sleep 2
     exit 0
@@ -546,7 +546,7 @@ show_menu() {
     echo "26) 安装 OpenList"
     echo "27) NAT 映射管理"
     echo "28) NAT 调优"
-    echo "29) MTR 自动报告"
+    echo "29) 💫 MTR 自动报告"
     echo "0) 卸载 HIA 管理脚本"
     echo "q) 退出"
     echo "----------------------------------"
