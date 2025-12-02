@@ -100,19 +100,22 @@ enable_bbr() {
 # ===== HIA BBR + TCP 优化参数 =====
 net.core.default_qdisc = fq
 net.ipv4.tcp_congestion_control = bbr
-
-net.core.rmem_max = 67108864
-net.core.wmem_max = 67108864
-net.core.rmem_default = 8388608
-net.core.wmem_default = 8388608
-net.ipv4.tcp_rmem = 4096 87380 67108864
-net.ipv4.tcp_wmem = 4096 65536 67108864
-
+net.core.rmem_max = 50331648
+net.core.wmem_max = 50331648
+net.core.rmem_default = 6291456
+net.core.wmem_default = 6291456
+net.ipv4.tcp_rmem = 4096 87380 50331648
+net.ipv4.tcp_wmem = 4096 65536 50331648
+net.ipv4.udp_rmem_min = 131072
+net.ipv4.udp_wmem_min = 131072
 net.ipv4.tcp_mtu_probing = 1
 net.ipv4.tcp_frto = 2
+net.ipv4.tcp_ecn = 0
 net.ipv4.tcp_window_scaling = 1
 net.ipv4.tcp_timestamps = 1
 net.ipv4.tcp_sack = 1
+net.ipv4.tcp_early_retrans = 3
+net.ipv4.tcp_moderate_rcvbuf = 1
 net.ipv4.tcp_fastopen = 3
 net.ipv4.tcp_low_latency = 1
 net.ipv4.tcp_notsent_lowat = 16384
@@ -122,30 +125,21 @@ net.ipv4.tcp_fin_timeout = 10
 net.ipv4.tcp_keepalive_time = 300
 net.ipv4.tcp_keepalive_intvl = 30
 net.ipv4.tcp_keepalive_probes = 5
-
 net.ipv4.tcp_syn_retries = 3
 net.ipv4.tcp_synack_retries = 2
 net.ipv4.tcp_retries1 = 3
 net.ipv4.tcp_retries2 = 8
-net.ipv4.tcp_ecn = 0
-
 net.core.somaxconn = 65535
 net.ipv4.tcp_max_syn_backlog = 65535
-net.core.netdev_max_backlog = 250000
-net.core.netdev_budget = 600
-net.core.netdev_budget_usecs = 2000
-net.core.dev_weight = 1024
+net.core.netdev_max_backlog = 150000        # ★从250000降到150000 → 明显降低排队延迟
+net.core.netdev_budget = 700                # ★从900降到700 → 降低批处理延迟
+net.core.netdev_budget_usecs = 1200         # ★从2000降到1200
+net.core.dev_weight = 768                   # ★从1024降到768
 net.core.dev_weight_tx_bias = 2
 net.core.optmem_max = 81920
-
-net.ipv4.udp_rmem_min = 131072
-net.ipv4.udp_wmem_min = 131072
-
-net.core.busy_poll = 100
-net.core.busy_read = 100
-
+net.core.busy_poll = 50                     # ★由100降到50 → 更低延迟更省 CPU
+net.core.busy_read = 50
 net.ipv4.ip_local_port_range = 1024 65535
-
 fs.file-max = 16777216
 vm.swappiness = 10
 vm.dirty_ratio = 10
