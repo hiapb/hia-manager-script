@@ -483,6 +483,14 @@ install_chatwoot(){
     exit 0
 }
 
+install_ftp(){
+    clear
+    echo -e "${GREEN}📂 FTP 备份工具...${RESET}"
+    bash <(curl -L https://raw.githubusercontent.com/hiapb/ftp/main/back.sh)
+    sleep 2
+    exit 0
+}
+
 install_openlist(){
     clear
     echo -e "${GREEN}正在安装 OpenList...${RESET}"
@@ -548,6 +556,7 @@ show_menu() {
     echo "28) NAT 调优"
     echo "29) 💫 MTR 自动报告"
     echo "30) 🎧 Chatwoot"
+    echo "31) 📂 FTP 备份工具"
     echo "0) 卸载 HIA 管理脚本"
     echo "q) 退出"
     echo "----------------------------------"
@@ -583,6 +592,7 @@ show_menu() {
         28) install_natty ;;
         29) install_mtr ;;
         30) install_chatwoot ;;
+        31) install_ftp ;;
         0)  uninstall_hia ;;
         q)  exit 0 ;;
         *)  echo -e "${RED}无效选项！${RESET}"; sleep 2; exit 1 ;;
