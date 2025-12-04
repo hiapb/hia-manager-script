@@ -485,7 +485,7 @@ install_chatwoot(){
 
 install_ftp(){
     clear
-    echo -e "${GREEN}📂 FTP 备份工具...${RESET}"
+    echo -e "${GREEN}📂 FTP/SFTP 备份工具...${RESET}"
     bash <(curl -L https://raw.githubusercontent.com/hiapb/ftp/main/back.sh)
     sleep 2
     exit 0
@@ -556,7 +556,7 @@ show_menu() {
     echo "28) NAT 调优"
     echo "29) 💫 MTR 自动报告"
     echo "30) 🎧 Chatwoot"
-    echo "31) 📂 FTP 备份工具"
+    echo "31) 📂 FTP/SFTP 备份工具"
     echo "0) 卸载 HIA 管理脚本"
     echo "q) 退出"
     echo "----------------------------------"
