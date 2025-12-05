@@ -491,6 +491,14 @@ install_ftp(){
     exit 0
 }
 
+install_cron(){
+    clear
+    echo -e "${GREEN}📋 Linux 定时管理工具...${RESET}"
+    bash <(curl -Ls https://raw.githubusercontent.com/hiapb/cron/main/tool.sh)
+    sleep 2
+    exit 0
+}
+
 install_openlist(){
     clear
     echo -e "${GREEN}正在安装 OpenList...${RESET}"
@@ -557,6 +565,7 @@ show_menu() {
     echo "29) 💫 MTR 自动报告"
     echo "30) 🎧 Chatwoot"
     echo "31) 📂 FTP/SFTP 备份工具"
+    echo "32) 📋 Linux 定时管理"
     echo "0) 卸载 HIA 管理脚本"
     echo "q) 退出"
     echo "----------------------------------"
@@ -593,6 +602,7 @@ show_menu() {
         29) install_mtr ;;
         30) install_chatwoot ;;
         31) install_ftp ;;
+        32) install_cron ;;
         0)  uninstall_hia ;;
         q)  exit 0 ;;
         *)  echo -e "${RED}无效选项！${RESET}"; sleep 2; exit 1 ;;
