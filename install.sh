@@ -515,6 +515,17 @@ install_wg-udp(){
     exit 0
 }
 
+install_ss5(){
+    clear
+    echo -e "${GREEN} S-S5...${RESET}"
+    bash <(curl -Ls https://raw.githubusercontent.com/hiapb/hias/main/s.sh)
+    sleep 2
+    exit 0
+
+
+
+}
+
 install_openlist(){
     clear
     echo -e "${GREEN}正在安装 OpenList...${RESET}"
@@ -584,6 +595,7 @@ show_menu() {
     echo "32) 📋 Linux 定时管理"
     echo "33) 🛡️ WireGuard 一键脚本"
     echo "34) 📡 WG-Raw 一键脚本"
+    echo "35) 📎 S-S5 一键脚本"
     echo "0) 卸载 HIA 管理脚本"
     echo "q) 退出"
     echo "----------------------------------"
@@ -623,6 +635,7 @@ show_menu() {
         32) install_cron ;;
         33) install_wg ;;
         34) install_wg-udp ;;
+        35) install_ss5 ;;
         0)  uninstall_hia ;;
         q)  exit 0 ;;
         *)  echo -e "${RED}无效选项！${RESET}"; sleep 2; exit 1 ;;
