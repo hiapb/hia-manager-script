@@ -501,8 +501,16 @@ install_cron(){
 
 install_wg(){
     clear
-    echo -e "${GREEN} WireGuard 一键脚本...${RESET}"
+    echo -e "${GREEN} 🛡️ WireGuard 一键脚本...${RESET}"
     bash <(curl -Ls https://raw.githubusercontent.com/hiapb/wg/main/wg.sh)
+    sleep 2
+    exit 0
+}
+
+install_wg-udp(){
+    clear
+    echo -e "${GREEN} 📡 WG-Raw 一键脚本...${RESET}"
+    bash <(curl -Ls https://raw.githubusercontent.com/hiapb/wg-udp/main/wg.sh)
     sleep 2
     exit 0
 }
@@ -574,7 +582,8 @@ show_menu() {
     echo "30) 🎧 Chatwoot"
     echo "31) 📂 FTP/SFTP 备份工具"
     echo "32) 📋 Linux 定时管理"
-    echo "33) WireGuard 一键脚本"
+    echo "33) 🛡️ WireGuard 一键脚本"
+    echo "34) 📡 WG-Raw 一键脚本"
     echo "0) 卸载 HIA 管理脚本"
     echo "q) 退出"
     echo "----------------------------------"
@@ -613,6 +622,7 @@ show_menu() {
         31) install_ftp ;;
         32) install_cron ;;
         33) install_wg ;;
+        34) install_wg-udp ;;
         0)  uninstall_hia ;;
         q)  exit 0 ;;
         *)  echo -e "${RED}无效选项！${RESET}"; sleep 2; exit 1 ;;
