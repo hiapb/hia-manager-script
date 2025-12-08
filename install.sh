@@ -550,6 +550,13 @@ check_ip_quality() {
     exit 0
 }
 
+update_hia() {
+    clear
+    echo -e "${GREEN}正在更新HIA 管理脚本...${RESET}"
+    bash <(curl -sSL https://raw.githubusercontent.com/hiapb/hia-manager-script/main/install.sh)
+    sleep 2
+}
+
 uninstall_hia() {
     echo -e "${RED}正在卸载 HIA 管理脚本...${RESET}"
     rm -f "$TARGET_DIR/hia"
@@ -596,6 +603,7 @@ show_menu() {
     echo "33) 🛡️ WireGuard 一键脚本"
     echo "34) 📡 WG-Raw 一键脚本"
     echo "35) 📎 S-S5 一键脚本"
+    echo "u) 更新 HIA 管理脚本"
     echo "q) 卸载 HIA 管理脚本"
     echo "0) 退出"
     echo "----------------------------------"
@@ -636,6 +644,7 @@ show_menu() {
         33) install_wg ;;
         34) install_wg-udp ;;
         35) install_ss5 ;;
+        u)  update_hia ;;
         q)  uninstall_hia ;;
         0)  exit 0 ;;
         *)  echo -e "${RED}无效选项！${RESET}"; sleep 2; exit 1 ;;
