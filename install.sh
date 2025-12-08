@@ -596,8 +596,8 @@ show_menu() {
     echo "33) 🛡️ WireGuard 一键脚本"
     echo "34) 📡 WG-Raw 一键脚本"
     echo "35) 📎 S-S5 一键脚本"
-    echo "0) 卸载 HIA 管理脚本"
-    echo "q) 退出"
+    echo "q) 卸载 HIA 管理脚本"
+    echo "0) 退出"
     echo "----------------------------------"
     read -p "请选择操作: " choice
     case "$choice" in
@@ -636,8 +636,8 @@ show_menu() {
         33) install_wg ;;
         34) install_wg-udp ;;
         35) install_ss5 ;;
-        0)  uninstall_hia ;;
-        q)  exit 0 ;;
+        q)  uninstall_hia ;;
+        0)  exit 0 ;;
         *)  echo -e "${RED}无效选项！${RESET}"; sleep 2; exit 1 ;;
     esac
 }
