@@ -526,11 +526,19 @@ install_ss5(){
 
 install_vir(){
     clear
-    echo -e "${GREEN} S-S5...${RESET}"
+    echo -e "${GREEN} Virtualizor 一键安装...${RESET}"
     bash <(curl -fsSL https://raw.githubusercontent.com/uoimrun/xxos/main/install.sh)
     sleep 2
     exit 0
 
+}
+
+manage_nat(){
+    clear
+    echo -e "${GREEN} NAT管理工具...${RESET}"
+    bash <(curl -fsSL https://raw.githubusercontent.com/uoimrun/xxos/main/nat.sh)
+    sleep 2
+    exit 0
 }
 
 install_openlist(){
@@ -610,7 +618,8 @@ show_menu() {
     echo "33) 🛡️ WireGuard 一键脚本"
     echo "34) 📡 WG-Raw 一键脚本"
     echo "35) 📎 S-S5 一键脚本"
-    echo "36)  Virtualizor 一键安装"
+    echo "36) Virtualizor 一键安装"
+    echo "37) NAT管理工具"
     echo "u) 更新 HIA 管理脚本"
     echo "q) 卸载 HIA 管理脚本"
     echo "0) 退出"
@@ -653,6 +662,7 @@ show_menu() {
         34) install_wg-udp ;;
         35) install_ss5 ;;
         36) install_vir ;;
+        37) manage_nat ;;
         u)  update_hia ;;
         q)  uninstall_hia ;;
         0)  exit 0 ;;
