@@ -389,21 +389,81 @@ install_aapanel() {
     exit 0
 }
 
-dlam_tunnel(){
+dlam_tunnel() {
     clear
-    echo -e "${GREEN}正在安装多啦A梦面板...${RESET}"
-    curl -L https://raw.githubusercontent.com/bqlpfy/flux-panel/refs/heads/main/panel_install.sh -o panel_install.sh && chmod +x panel_install.sh && ./panel_install.sh
+    echo -e "${GREEN}多啦A梦面板...${RESET}"
+    echo
+    echo "请选择安装版本："
+    echo "  1) 稳定版（Stable）"
+    echo "  2) 开发版（Beta）"
+    echo
+
+    read -p "请输入选项 [1/2]（默认 1）: " choice
+
+    # 默认选择 1
+    choice=${choice:-1}
+
+    case "$choice" in
+        1)
+            echo -e "${GREEN}已选择：稳定版${RESET}"
+            curl -L https://raw.githubusercontent.com/bqlpfy/flux-panel/refs/heads/main/panel_install.sh \
+                -o panel_install.sh
+            ;;
+        2)
+            echo -e "${YELLOW}已选择：开发版（Beta）${RESET}"
+            curl -L https://raw.githubusercontent.com/bqlpfy/flux-panel/refs/heads/beta/panel_install.sh \
+                -o panel_install.sh
+            ;;
+        *)
+            echo -e "${RED}无效选项，已自动使用稳定版${RESET}"
+            curl -L https://raw.githubusercontent.com/bqlpfy/flux-panel/refs/heads/main/panel_install.sh \
+                -o panel_install.sh
+            ;;
+    esac
+
+    chmod +x panel_install.sh && ./panel_install.sh
     sleep 2
     exit 0
 }
 
- manage_dlamnode(){
+
+manage_dlamnode() {
     clear
     echo -e "${GREEN}多啦A梦节点端管理...${RESET}"
-    curl -L https://raw.githubusercontent.com/bqlpfy/flux-panel/refs/heads/main/install.sh -o install.sh && chmod +x install.sh && ./install.sh
+    echo
+    echo "请选择安装版本："
+    echo "  1) 稳定版（Stable）"
+    echo "  2) 开发版（Beta）"
+    echo
+
+    read -p "请输入选项 [1/2]（默认 1）: " choice
+
+    # 默认选择 1
+    choice=${choice:-1}
+
+    case "$choice" in
+        1)
+            echo -e "${GREEN}已选择：稳定版${RESET}"
+            curl -L https://raw.githubusercontent.com/bqlpfy/flux-panel/refs/heads/main/install.sh \
+                -o install.sh
+            ;;
+        2)
+            echo -e "${YELLOW}已选择：开发版（Beta）${RESET}"
+            curl -L https://raw.githubusercontent.com/bqlpfy/flux-panel/refs/heads/beta/install.sh \
+                -o install.sh
+            ;;
+        *)
+            echo -e "${RED}无效选项，已自动使用稳定版${RESET}"
+            curl -L https://raw.githubusercontent.com/bqlpfy/flux-panel/refs/heads/main/install.sh \
+                -o install.sh
+            ;;
+    esac
+
+    chmod +x install.sh && ./install.sh
     sleep 2
     exit 0
- }
+}
+
 
  manage_clean(){
     clear
