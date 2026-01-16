@@ -153,7 +153,7 @@ EOF
     exit 0
 }
 
-modify_dns_and_block_sites() {
+block_sites() {
     # 颜色变量
     GREEN='\033[0;32m'
     YELLOW='\033[1;33m'
