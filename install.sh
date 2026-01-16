@@ -690,7 +690,7 @@ show_menu() {
     echo "35) 📎 S-S5 一键脚本"
     echo "36) Virtualizor 一键安装"
     echo "37) NAT管理工具"
-    ehco "38) RelayX 一键备份"
+    echo "38) RelayX 一键备份"
     echo "u) 更新 HIA 管理脚本"
     echo "q) 卸载 HIA 管理脚本"
     echo "0) 退出"
