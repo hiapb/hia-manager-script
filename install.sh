@@ -153,37 +153,57 @@ EOF
     exit 0
 }
 
+modify_dns_and_block_sites() {
+    # 颜色变量
+    GREEN='\033[0;32m'
+    YELLOW='\033[1;33m'
+    BLUE='\033[0;34m'
+    RED='\033[0;31m'
+    RESET='\033[0m'
 
-block_sites() {
-    # 颜色变量可选（若已在外部定义，这里会用外部值）
-    GREEN=${GREEN:-'\033[0;32m'}
-    YELLOW=${YELLOW:-'\033[1;33m'}
-    BLUE=${BLUE:-'\033[0;34m'}
-    RESET=${RESET:-'\033[0m'}
-
-    echo -e "${GREEN}正在向 /etc/hosts 追加网站屏蔽条目...${RESET}"
-
-    # 按需使用 sudo（若非 root 且系统有 sudo，则使用）
+    # 1. 权限检查
     if [ "$(id -u)" -ne 0 ] && command -v sudo >/dev/null 2>&1; then
         SUDO="sudo"
     else
         SUDO=""
     fi
 
-    # 1) 解锁 /etc/hosts（非 ext* 或未安装 chattr 时忽略错误）
+    # ---------------------------------------------------------
+    # 第一部分：修改 DNS 
+    # ---------------------------------------------------------
+    echo -e "${BLUE}正在配置系统 DNS...${RESET}"
+    
+    # 备份 resolv.conf
+    $SUDO cp /etc/resolv.conf /etc/resolv.conf.bak 2>/dev/null
+
+    # 解开 resolv.conf 的锁定（防止某些系统加了 i 属性）
+    $SUDO chattr -i /etc/resolv.conf 2>/dev/null || true
+
+    $SUDO bash -c "cat > /etc/resolv.conf <<EOF
+nameserver 1.1.1.1
+nameserver 8.8.8.8
+nameserver 9.9.9.9
+nameserver 208.67.222.222
+EOF"
+    echo -e "${GREEN}DNS 已更新。${RESET}"
+
+    # ---------------------------------------------------------
+    # 第二部分：屏蔽网站 (Hosts)
+    # ---------------------------------------------------------
+    echo -e "${BLUE}正在配置网站屏蔽列表...${RESET}"
+
     $SUDO chattr -i /etc/hosts 2>/dev/null || true
-    echo -e "${YELLOW}/etc/hosts 已解锁（允许写入）${RESET}"
+    $SUDO cp /etc/hosts /etc/hosts.bak
 
-    # 2) 备份
-    cp /etc/hosts /etc/hosts.bak
-    echo -e "${BLUE}/etc/hosts 已备份为 /etc/hosts.bak${RESET}"
-
-    # 3) 检查是否已经追加过屏蔽条目
     if grep -q "# ===== Block Sites =====" /etc/hosts; then
-        echo -e "${YELLOW}屏蔽条目已经追加过，跳过此操作！${RESET}"
-    else
-        # 追加屏蔽条目（注意用 <<'EOF'，避免特殊字符被解释）
-        cat >> /etc/hosts <<'EOF'
+        echo -e "${YELLOW}屏蔽条目已存在，正在覆盖更新...${RESET}"
+        # 先删除旧的屏蔽块，以便更新
+        $SUDO sed -i '/# ===== Block Sites =====/,/# ===== End Block =====/d' /etc/hosts
+    fi
+
+    # 追加新的列表
+    $SUDO bash -c "cat >> /etc/hosts <<'EOF'
+# ===== Block Sites =====
 # ===== Block Sites =====
 0.0.0.0 falundafa.org
 0.0.0.0 minghui.org
@@ -290,17 +310,32 @@ block_sites() {
 0.0.0.0 openspeedtest.com
 0.0.0.0 bandwidthplace.com
 0.0.0.0 librespeed.org
+0.0.0.0 xunlei.com
+0.0.0.0 thunder.com
+0.0.0.0 sandai.net
+0.0.0.0 kankan.com
+0.0.0.0 xlliveud.com
+0.0.0.0 hub5btmain.sandai.net
+0.0.0.0 upgrade.xl9.xunlei.com
+0.0.0.0 bitpt.cn
+0.0.0.0 tracker.openbittorrent.com
+0.0.0.0 tracker.opentrackr.org
+0.0.0.0 tracker.torrent.eu.org
+0.0.0.0 tracker.publicbt.com
+0.0.0.0 tracker.coppersurfer.tk
+0.0.0.0 open.demonii.com
+0.0.0.0 tracker.istole.it
+0.0.0.0 bittorrent.com
+0.0.0.0 magnet-link.com
+0.0.0.0 torrentproject.org
 # ===== End Block =====
-EOF
+EOF"
 
-        echo -e "${GREEN}网站屏蔽条目已成功追加！${RESET}"
-    fi
-
-    # 4) 重新上锁（非 ext* / 无 chattr 时忽略错误）
+    # 重新锁定文件防止被系统自动修改
+    $SUDO chattr +i /etc/resolv.conf 2>/dev/null || true
     $SUDO chattr +i /etc/hosts 2>/dev/null || true
-    echo -e "${GREEN}/etc/hosts 已重新上锁，防止修改！${RESET}"
 
-    sleep 1
+    echo -e "${GREEN}操作完成！DNS 已锁定，网站屏蔽已生效。${RESET}"
 }
 
 
