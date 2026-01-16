@@ -593,6 +593,16 @@ install_vir(){
 
 }
 
+install_backx(){
+    clear
+    echo -e "${GREEN} RelayX 一键备份...${RESET}"
+    bash <(curl -fsSL https://raw.githubusercontent.com/hiapb/backx/main/install.sh)
+    sleep 2
+    exit 0
+
+}
+
+
 manage_nat(){
     clear
     echo -e "${GREEN} NAT管理工具...${RESET}"
@@ -680,6 +690,7 @@ show_menu() {
     echo "35) 📎 S-S5 一键脚本"
     echo "36) Virtualizor 一键安装"
     echo "37) NAT管理工具"
+    ehco "38) RelayX 一键备份"
     echo "u) 更新 HIA 管理脚本"
     echo "q) 卸载 HIA 管理脚本"
     echo "0) 退出"
@@ -723,6 +734,7 @@ show_menu() {
         35) install_ss5 ;;
         36) install_vir ;;
         37) manage_nat ;;
+        38) install_backx ;;
         u)  update_hia ;;
         q)  uninstall_hia ;;
         0)  exit 0 ;;
