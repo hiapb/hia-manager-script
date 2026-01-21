@@ -610,6 +610,14 @@ install_wg-udp(){
     exit 0
 }
 
+install_wg-udp_more(){
+    clear
+    echo -e "${GREEN} 📡 WG-Raw-More 一键脚本...${RESET}"
+    bash <(curl -fsSL https://raw.githubusercontent.com/hiapb/wg-more/main/install.sh)
+    sleep 2
+    exit 0
+}
+
 install_ss5(){
     clear
     echo -e "${GREEN} S-S5...${RESET}"
@@ -726,6 +734,7 @@ show_menu() {
     echo "36) Virtualizor 一键安装"
     echo "37) NAT管理工具"
     echo "38) RelayX 一键备份"
+    echo "39) 📡 WG-Raw-More 一键脚本"
     echo "u) 更新 HIA 管理脚本"
     echo "q) 卸载 HIA 管理脚本"
     echo "0) 退出"
@@ -770,6 +779,7 @@ show_menu() {
         36) install_vir ;;
         37) manage_nat ;;
         38) install_backx ;;
+        39) install_wg-udp_more ;;
         u)  update_hia ;;
         q)  uninstall_hia ;;
         0)  exit 0 ;;
