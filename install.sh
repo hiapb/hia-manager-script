@@ -424,6 +424,13 @@ install_aapanel() {
     exit 0
 }
 
+install_hipf() {
+    clear
+    echo -e "${GREEN}正在进入 HiaPortFusion 面板管理菜单...${RESET}"
+    bash <(curl -fsSL https://raw.githubusercontent.com/nurohia/hiaportfusion/main/install.sh)
+    exit 0
+}
+
 dlam_tunnel() {
     clear
     echo -e "${GREEN}多啦A梦面板...${RESET}"
@@ -735,6 +742,7 @@ show_menu() {
     echo "37) NAT管理工具"
     echo "38) RelayX 一键备份"
     echo "39) 📡 WG-Raw-More 一键脚本"
+    echo "40) HiaPortFusion 面板"
     echo "u) 更新 HIA 管理脚本"
     echo "q) 卸载 HIA 管理脚本"
     echo "0) 退出"
@@ -780,6 +788,7 @@ show_menu() {
         37) manage_nat ;;
         38) install_backx ;;
         39) install_wg-udp_more ;;
+        40) install_hipf ;;
         u)  update_hia ;;
         q)  uninstall_hia ;;
         0)  exit 0 ;;
