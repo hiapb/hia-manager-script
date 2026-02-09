@@ -346,6 +346,14 @@ install_hipf() {
     exit 0
 }
 
+install_tb() {
+    clear
+    echo -e "${GREEN}正在进入 流量均衡器...${RESET}"
+    bash <(curl -fsSL https://raw.githubusercontent.com/hiapb/balancer/main/install.sh)
+    exit 0
+}
+
+
 install_haproxy() {
     clear
     echo -e "${GREEN}正在安装 HAProxy TCP转发管理脚本...${RESET}"
@@ -743,6 +751,7 @@ show_menu() {
     echo "38) RelayX 一键备份"
     echo "39) 📡 WG-Raw-More 一键脚本"
     echo "40) HiaPortFusion 面板"
+    echo "41) 流量均衡器"
     echo "u) 更新 HIA 管理脚本"
     echo "q) 卸载 HIA 管理脚本"
     echo "0) 退出"
@@ -789,6 +798,7 @@ show_menu() {
         38) install_backx ;;
         39) install_wg-udp_more ;;
         40) install_hipf ;;
+        41) install_tb ;;
         u)  update_hia ;;
         q)  uninstall_hia ;;
         0)  exit 0 ;;
