@@ -354,6 +354,14 @@ install_tb() {
 }
 
 
+install_qm_s2a() {
+    clear
+    echo -e "${GREEN}正在进入 Sub2API 一键管理...${RESET}"
+    bash <(curl -sSL https://raw.githubusercontent.com/hiapb/qm-s2a/main/install.sh)
+    exit 0
+}
+
+
 install_haproxy() {
     clear
     echo -e "${GREEN}正在安装 HAProxy TCP转发管理脚本...${RESET}"
@@ -752,6 +760,7 @@ show_menu() {
     echo "39) 📡 WG-Raw-More 一键脚本"
     echo "40) HiaPortFusion 面板"
     echo "41) 流量均衡器"
+    echo "42) Sub2API 一键管理"
     echo "u) 更新 HIA 管理脚本"
     echo "q) 卸载 HIA 管理脚本"
     echo "0) 退出"
@@ -799,6 +808,7 @@ show_menu() {
         39) install_wg-udp_more ;;
         40) install_hipf ;;
         41) install_tb ;;
+        42) install_qm_s2a ;;
         u)  update_hia ;;
         q)  uninstall_hia ;;
         0)  exit 0 ;;
