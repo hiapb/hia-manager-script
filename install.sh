@@ -361,6 +361,12 @@ install_qm_s2a() {
     exit 0
 }
 
+install_qm_cli() {
+    clear
+    echo -e "${GREEN}正在进入 CLIProxyAPI 一键管理...${RESET}"
+    bash <(curl -fsSL https://raw.githubusercontent.com/hiapb/qm-cli/main/install.sh)
+    exit 0
+}
 
 install_haproxy() {
     clear
@@ -761,6 +767,7 @@ show_menu() {
     echo "40) HiaPortFusion 面板"
     echo "41) 流量均衡器"
     echo "42) Sub2API 一键管理"
+    echo "43) CLIProxyAPI 一键管理"
     echo "u) 更新 HIA 管理脚本"
     echo "q) 卸载 HIA 管理脚本"
     echo "0) 退出"
@@ -809,6 +816,7 @@ show_menu() {
         40) install_hipf ;;
         41) install_tb ;;
         42) install_qm_s2a ;;
+        43) install_qm_cli ;;
         u)  update_hia ;;
         q)  uninstall_hia ;;
         0)  exit 0 ;;
