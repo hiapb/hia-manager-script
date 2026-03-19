@@ -375,10 +375,44 @@ install_api_shield() {
     exit 0
 }
 
-install_nic-master(){
-    clear
-    echo -e "${GREEN}正在进入 nic-master...${RESET}"
-    bash <(curl -fsSL https://raw.githubusercontent.com/inimemail/nic-master/main/install.sh)
+install_nic-master() {
+    while true; do
+        clear
+        echo -e "${BLUE}=====================================================${RESET}"
+        echo -e "${BLUE}                NIC-Master 部署分流中心              ${RESET}"
+        echo -e "${BLUE}=====================================================${RESET}"
+        echo -e " 请根据您的服务器硬件类型选择部署路径："
+        echo
+        echo -e " 1) ${GREEN}[虚拟化]${RESET} 非独服 (VPS / 云主机 / 虚拟机)"
+        echo -e "    ${GRAY}注：执行标准型通用优化 (install.sh)${RESET}"
+        echo
+        echo -e " 2) ${YELLOW}[裸金属]${RESET} 独立服务器 (物理机 / Dedicated Server)"
+        echo -e "    ${GRAY}注：执行智能自适应重型内核调优 (auto.install)${RESET}"
+        echo
+        echo -e " 0) 返回上级菜单"
+        echo -e "${BLUE}=====================================================${RESET}"
+        read -r -p " 请输入选项 [0-2]: " env_choice
+
+        case "$env_choice" in
+            1)
+                echo -e "\n${GREEN}[处理中]${RESET} 正在拉取 VPS 通用优化脚本..."
+                bash <(curl -fsSL https://raw.githubusercontent.com/inimemail/nic-master/main/install.sh)
+                break
+                ;;
+            2)
+                echo -e "\n${YELLOW}[处理中]${RESET} 正在拉取 独服重型调优引擎 (Smart-Auto)..."
+                bash <(curl -fsSL https://raw.githubusercontent.com/inimemail/nic-master/main/auto.install)
+                break
+                ;;
+            0)
+                return
+                ;;
+            *)
+                echo -e "\n${RED}无效选项，请重新输入...${RESET}"
+                sleep 1
+                ;;
+        esac
+    done
     exit 0
 }
 
