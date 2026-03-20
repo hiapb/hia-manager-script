@@ -390,8 +390,19 @@ install_nic-master() {
 
         case "$env_choice" in
             1)
-                echo -e "\n${GREEN}[处理中]${RESET} 正在拉取 VPS 通用优化脚本..."
-                bash <(curl -fsSL https://raw.githubusercontent.com/inimemail/nic-master/main/install.sh)
+                local mem_kb
+                local cpu_cores
+                mem_kb=$(awk '/MemTotal:/ {print $2}' /proc/meminfo 2>/dev/null || echo 2048000)
+                cpu_cores=$(nproc 2>/dev/null || echo 2)
+
+                if [ "$cpu_cores" -le 1 ] || [ "$mem_kb" -lt 1000000 ]; then
+                    echo -e "\n${YELLOW}[资源探针]${RESET} 嗅探到当前为受限节点 (CPU: ${cpu_cores}核, RAM: $((mem_kb/1024))MB)。"
+                    echo -e "${GREEN}[安全防线]${RESET} 已自动熔断重型操作，降级拉取 防失联安全版 (small.sh)..."
+                    bash <(curl -fsSL https://raw.githubusercontent.com/inimemail/nic-master/main/small.sh)
+                else
+                    echo -e "${GREEN}[处理中]${RESET} 正在拉取 VPS 通用版本 (install.sh)..."
+                    bash <(curl -fsSL https://raw.githubusercontent.com/inimemail/nic-master/main/install.sh)
+                fi
                 break
                 ;;
             2)
