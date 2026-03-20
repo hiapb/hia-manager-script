@@ -397,10 +397,10 @@ install_nic-master() {
 
                 if [ "$cpu_cores" -le 1 ] || [ "$mem_kb" -lt 1000000 ]; then
                     echo -e "\n${YELLOW}[资源探针]${RESET} 嗅探到当前为受限节点 (CPU: ${cpu_cores}核, RAM: $((mem_kb/1024))MB)。"
-                    echo -e "${GREEN}[安全防线]${RESET} 已自动熔断重型操作，降级拉取 防失联安全版 (small.sh)..."
+                    echo -e "${GREEN}[安全防线]${RESET} 已自动熔断重型操作，降级拉取 防失联安全版 ..."
                     bash <(curl -fsSL https://raw.githubusercontent.com/inimemail/nic-master/main/small.sh)
                 else
-                    echo -e "${GREEN}[处理中]${RESET} 正在拉取 VPS 通用版本 (install.sh)..."
+                    echo -e "${GREEN}[处理中]${RESET} 正在拉取 VPS 通用版本..."
                     bash <(curl -fsSL https://raw.githubusercontent.com/inimemail/nic-master/main/install.sh)
                 fi
                 break
