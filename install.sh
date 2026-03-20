@@ -688,7 +688,28 @@ install_wg(){
 install_wg-udp(){
     clear
     echo -e "${GREEN} 📡 WG-Raw 一键脚本...${RESET}"
-    bash <(curl -Ls https://raw.githubusercontent.com/hiapb/wg-udp/main/wg.sh)
+    echo -e "   1. WG-Raw"
+    echo -e "   2. WG-Raw-FEC"
+    echo -e "   0. 退出"
+    echo -e "${GREEN}=========================${RESET}"
+    read -rp " 请选择 [0-2]: " wg_choice
+
+    case "$wg_choice" in
+        1)
+            bash <(curl -Ls https://raw.githubusercontent.com/hiapb/wg-udp/main/wg.sh)
+            ;;
+        2)
+            bash <(curl -Ls https://raw.githubusercontent.com/hiapb/wg-udp/main/fec.sh)
+            ;;
+        0)
+            exit 0
+            ;;
+        *)
+            echo -e "\033[31m❌ 输入错误，请重新选择。\033[0m"
+            sleep 1
+            install_wg-udp
+            ;;
+    esac
     sleep 2
     exit 0
 }
