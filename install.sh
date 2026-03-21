@@ -384,9 +384,10 @@ install_nic-master() {
         echo -e " 请根据您的服务器硬件类型选择部署路径："
         echo -e " 1) ${GREEN}[虚拟化]${RESET} 非独服 (VPS / 云主机 / 虚拟机)"
         echo -e " 2) ${YELLOW}[裸金属]${RESET} 独立服务器 (物理机 / Dedicated Server)"
+        echo -e " 3) ${BLUE}[SRT]${RESET} Live Relay SRT 代理管控工具"
         echo -e " 0) 返回上级菜单"
         echo -e "${BLUE}=====================================================${RESET}"
-        read -r -p " 请输入选项 [0-2]: " env_choice
+        read -r -p " 请输入选项 [0-3]: " env_choice
 
         case "$env_choice" in
             1)
@@ -408,6 +409,11 @@ install_nic-master() {
             2)
                 echo -e "\n${YELLOW}[处理中]${RESET} 正在拉取 独服重型调优引擎 (Smart-Auto)..."
                 bash <(curl -fsSL https://raw.githubusercontent.com/inimemail/nic-master/main/auto.install)
+                break
+                ;;
+            3)
+                echo -e "\n${BLUE}[处理中]${RESET} 正在拉取 Live Relay SRT 代理管控工具..."
+                bash <(curl -fsSL https://raw.githubusercontent.com/inimemail/nic-master/main/star.sh)
                 break
                 ;;
             0)
