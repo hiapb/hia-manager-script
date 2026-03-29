@@ -614,7 +614,7 @@ install_docker(){
 install_1panel() {
     clear
     echo -e "${GREEN}正在安装 1Panel...${RESET}"
-    curl -sSL https://resource.fit2cloud.com/1panel/package/quick_start.sh -o quick_start.sh && bash quick_start.sh
+    curl -sSL https://resource.1panel.pro/quick_start.sh -o quick_start.sh && bash quick_start.sh
     sleep 2
     exit 0
 }
