@@ -691,7 +691,7 @@ install_wg(){
     exit 0
 }
 
-install_wg_udp(){
+install_wg-udp(){
     clear
     echo -e "${GREEN} 📡 WG-Raw 一键脚本...${RESET}"
     echo -e "   1. WG-Raw"
