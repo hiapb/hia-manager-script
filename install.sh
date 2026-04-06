@@ -691,14 +691,16 @@ install_wg(){
     exit 0
 }
 
-install_wg-udp(){
+install_wg_udp(){
     clear
     echo -e "${GREEN} 📡 WG-Raw 一键脚本...${RESET}"
     echo -e "   1. WG-Raw"
     echo -e "   2. WG-Raw-FEC"
+    echo -e "   3. 📡 AWG 高级链路"
+    echo -e "   4. 📡 WG + wstunnel + Nginx 高级链路"
     echo -e "   0. 退出"
     echo -e "${GREEN}=========================${RESET}"
-    read -rp " 请选择 [0-2]: " wg_choice
+    read -rp " 请选择 [0-4]: " wg_choice
 
     case "$wg_choice" in
         1)
@@ -707,15 +709,22 @@ install_wg-udp(){
         2)
             bash <(curl -Ls https://raw.githubusercontent.com/hiapb/wg-udp/main/fec.sh)
             ;;
+        3)
+            bash <(curl -Ls https://raw.githubusercontent.com/hiapb/wg-udp/main/awg_node.sh)
+            ;;
+        4)
+            bash <(curl -Ls https://raw.githubusercontent.com/hiapb/wg-udp/main/wg_ws.sh)
+            ;;
         0)
             exit 0
             ;;
         *)
             echo -e "\033[31m❌ 输入错误，请重新选择。\033[0m"
             sleep 1
-            install_wg-udp
+            install_wg_udp
             ;;
     esac
+
     sleep 2
     exit 0
 }
