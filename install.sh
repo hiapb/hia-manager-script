@@ -695,24 +695,28 @@ install_wg_udp(){
     clear
     echo -e "${GREEN} 📡 WG-Raw 一键脚本...${RESET}"
     echo -e "   1. WG-Raw"
-    echo -e "   2. WG-Raw-FEC"
-    echo -e "   3. 📡 AWG 高级链路"
-    echo -e "   4. 📡 WG + wstunnel + Nginx 高级链路"
+    echo -e "   2. WG-FEC 高级链路"
+    echo -e "   3. WG-Raw-FEC"
+    echo -e "   4. 📡 AWG 高级链路"
+    echo -e "   5. 📡 WG + wstunnel + Nginx 高级链路"
     echo -e "   0. 退出"
     echo -e "${GREEN}=========================${RESET}"
-    read -rp " 请选择 [0-4]: " wg_choice
+    read -rp " 请选择 [0-5]: " wg_choice
 
     case "$wg_choice" in
         1)
             bash <(curl -Ls https://raw.githubusercontent.com/hiapb/wg-udp/main/wg.sh)
             ;;
         2)
-            bash <(curl -Ls https://raw.githubusercontent.com/hiapb/wg-udp/main/fec.sh)
+            bash <(curl -Ls https://raw.githubusercontent.com/hiapb/wg-udp/main/wfec.sh)
             ;;
         3)
-            bash <(curl -Ls https://raw.githubusercontent.com/hiapb/wg-udp/main/awg_node.sh)
+            bash <(curl -Ls https://raw.githubusercontent.com/hiapb/wg-udp/main/fec.sh)
             ;;
         4)
+            bash <(curl -Ls https://raw.githubusercontent.com/hiapb/wg-udp/main/awg_node.sh)
+            ;;
+        5)
             bash <(curl -Ls https://raw.githubusercontent.com/hiapb/wg-udp/main/wg_ws.sh)
             ;;
         0)
