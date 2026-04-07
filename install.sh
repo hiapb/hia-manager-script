@@ -375,6 +375,13 @@ install_api_shield() {
     exit 0
 }
 
+install_forgejo(){
+    clear
+    echo -e "${GREEN}正在进入 Forgejo 一键管理...${RESET}"
+    bash <(curl -fsSL https://raw.githubusercontent.com/hiapb/forgejo/main/install.sh)
+    exit 0
+}
+
 install_nic-master() {
     while true; do
         clear
@@ -864,6 +871,7 @@ show_menu() {
     echo "43) CLIProxyAPI 一键管理"
     echo "44) 零信任矩阵网关系统"
     echo "45) nic-master"
+    echo "46) Forgejo 一键管理"
     echo "u) 更新 HIA 管理脚本"
     echo "q) 卸载 HIA 管理脚本"
     echo "0) 退出"
@@ -915,6 +923,7 @@ show_menu() {
         43) install_qm_cli ;;
         44) install_api_shield ;;
         45) install_nic-master;;
+        46) install_forgejo;;
         u)  update_hia ;;
         q)  uninstall_hia ;;
         0)  exit 0 ;;
