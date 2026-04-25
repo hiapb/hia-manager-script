@@ -757,6 +757,14 @@ install_ss5(){
 
 }
 
+install_hiax(){
+    clear
+    echo -e "${GREEN} hia-X...${RESET}"
+    bash <(curl -fsSL https://raw.githubusercontent.com/hiapb/hia-xn/main/install.sh)
+    sleep 2
+    exit 0
+}
+
 install_vir(){
     clear
     echo -e "${GREEN} Virtualizor 一键安装...${RESET}"
@@ -872,6 +880,7 @@ show_menu() {
     echo "44) 零信任矩阵网关系统"
     echo "45) nic-master"
     echo "46) Forgejo 一键管理"
+    echo "46) hia-X 一键管理"
     echo "u) 更新 HIA 管理脚本"
     echo "q) 卸载 HIA 管理脚本"
     echo "0) 退出"
@@ -924,6 +933,7 @@ show_menu() {
         44) install_api_shield ;;
         45) install_nic-master;;
         46) install_forgejo;;
+        47) install_hiax;
         u)  update_hia ;;
         q)  uninstall_hia ;;
         0)  exit 0 ;;
