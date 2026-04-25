@@ -880,7 +880,7 @@ show_menu() {
     echo "44) 零信任矩阵网关系统"
     echo "45) nic-master"
     echo "46) Forgejo 一键管理"
-    echo "46) hia-X 一键管理"
+    echo "47) hia-X 一键管理"
     echo "u) 更新 HIA 管理脚本"
     echo "q) 卸载 HIA 管理脚本"
     echo "0) 退出"
