@@ -933,7 +933,7 @@ show_menu() {
         44) install_api_shield ;;
         45) install_nic-master;;
         46) install_forgejo;;
-        47) install_hiax;;
+        47) install_hiax ;;
         u)  update_hia ;;
         q)  uninstall_hia ;;
         0)  exit 0 ;;
