@@ -382,6 +382,13 @@ install_forgejo(){
     exit 0
 }
 
+install_clve(){
+    clear
+    echo -e "${GREEN}正在进入 Cloudreve 一键管理...${RESET}"
+    bash <(curl -fsSL https://raw.githubusercontent.com/hiapb/hia_clve/main/install.sh)
+    exit 0
+}
+
 install_nic-master() {
     while true; do
         clear
@@ -881,6 +888,7 @@ show_menu() {
     echo "45) nic-master"
     echo "46) Forgejo 一键管理"
     echo "47) hia-X 一键管理"
+    echo "48) Cloudreve 一键管理"
     echo "u) 更新 HIA 管理脚本"
     echo "q) 卸载 HIA 管理脚本"
     echo "0) 退出"
@@ -934,6 +942,7 @@ show_menu() {
         45) install_nic-master;;
         46) install_forgejo;;
         47) install_hiax ;;
+        48) install_clve ;;
         u)  update_hia ;;
         q)  uninstall_hia ;;
         0)  exit 0 ;;
