@@ -790,6 +790,14 @@ install_backx(){
 
 }
 
+install_cfm(){
+    clear
+    echo -e "${GREEN} CodeFreeMax 一键备份...${RESET}"
+    bash <(curl -sSL https://raw.githubusercontent.com/hiapb/hia-cfm/main/install.sh)
+    sleep 2
+    exit 0
+
+}
 
 manage_nat(){
     clear
@@ -889,6 +897,7 @@ show_menu() {
     echo "46) Forgejo 一键管理"
     echo "47) hia-X 一键管理"
     echo "48) Cloudreve 一键管理"
+    echo "49) CodeFreeMax 一键管理"
     echo "u) 更新 HIA 管理脚本"
     echo "q) 卸载 HIA 管理脚本"
     echo "0) 退出"
@@ -943,6 +952,7 @@ show_menu() {
         46) install_forgejo;;
         47) install_hiax ;;
         48) install_clve ;;
+        49) install_cfm ;;
         u)  update_hia ;;
         q)  uninstall_hia ;;
         0)  exit 0 ;;
