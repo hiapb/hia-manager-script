@@ -807,6 +807,14 @@ manage_nat(){
     exit 0
 }
 
+install_du(){
+    clear
+    echo -e "${GREEN} 独角兽一键管理...${RESET}"
+    bash <(curl -fsSL https://raw.githubusercontent.com/hiapb/hia-d/main/run.sh)
+    sleep 2
+    exit 0
+}
+
 install_openlist(){
     clear
     echo -e "${GREEN}正在安装 OpenList...${RESET}"
@@ -898,6 +906,7 @@ show_menu() {
     echo "47) hia-X 一键管理"
     echo "48) Cloudreve 一键管理"
     echo "49) CodeFreeMax 一键管理"
+    echo "50) 独角兽 一键管理"
     echo "u) 更新 HIA 管理脚本"
     echo "q) 卸载 HIA 管理脚本"
     echo "0) 退出"
@@ -953,6 +962,7 @@ show_menu() {
         47) install_hiax ;;
         48) install_clve ;;
         49) install_cfm ;;
+        50) install_du ;;
         u)  update_hia ;;
         q)  uninstall_hia ;;
         0)  exit 0 ;;
