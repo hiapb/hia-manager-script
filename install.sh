@@ -389,6 +389,13 @@ install_clve(){
     exit 0
 }
 
+install_goacc(){
+    clear
+    echo -e "${GREEN}正在进入 Goacc 一键管理...${RESET}"
+    bash <(curl -Ls https://raw.githubusercontent.com/inimemail/goacc/main/install.sh)
+    exit 0
+}
+
 install_nic-master() {
     while true; do
         clear
@@ -907,6 +914,7 @@ show_menu() {
     echo "48) Cloudreve 一键管理"
     echo "49) CodeFreeMax 一键管理"
     echo "50) 独角兽 一键管理"
+    echo "51) Goacc 一键管理"
     echo "u) 更新 HIA 管理脚本"
     echo "q) 卸载 HIA 管理脚本"
     echo "0) 退出"
@@ -963,6 +971,7 @@ show_menu() {
         48) install_clve ;;
         49) install_cfm ;;
         50) install_du ;;
+        51) install_goacc ;;
         u)  update_hia ;;
         q)  uninstall_hia ;;
         0)  exit 0 ;;
