@@ -696,6 +696,14 @@ install_ftp(){
     exit 0
 }
 
+install_s3(){
+    clear
+    echo -e "${GREEN}📂 S3 备份工具...${RESET}"
+    bash <(curl -sL https://raw.githubusercontent.com/hiapb/bs3/main/install.sh)
+    sleep 2
+    exit 0
+}
+
 install_cron(){
     clear
     echo -e "${GREEN}📋 Linux 定时管理工具...${RESET}"
@@ -915,6 +923,7 @@ show_menu() {
     echo "49) CodeFreeMax 一键管理"
     echo "50) 独角兽 一键管理"
     echo "51) Goacc 一键管理"
+    echo "52) 📂 S3 备份工具"
     echo "u) 更新 HIA 管理脚本"
     echo "q) 卸载 HIA 管理脚本"
     echo "0) 退出"
@@ -972,6 +981,7 @@ show_menu() {
         49) install_cfm ;;
         50) install_du ;;
         51) install_goacc ;;
+        52) install_s3 ;;
         u)  update_hia ;;
         q)  uninstall_hia ;;
         0)  exit 0 ;;
