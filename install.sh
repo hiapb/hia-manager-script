@@ -417,7 +417,7 @@ install_nic-master() {
                 mem_kb=$(awk '/MemTotal:/ {print $2}' /proc/meminfo 2>/dev/null || echo 2048000)
                 cpu_cores=$(nproc 2>/dev/null || echo 2)
 
-               if (( $(echo "$cpu_cores <= 0.5" | bc -l) )) || [ "$mem_kb" -lt 1000000 ]; then
+               if (( $(echo "$cpu_cores <= 0.5" | bc -l) )) || [ "$mem_kb" -lt 524288 ]; then
                echo -e "\n${YELLOW}[资源探针]${RESET} 嗅探到当前为受限节点 (CPU: ${cpu_cores}核, RAM: $((mem_kb/1024))MB)。"
                echo -e "${GREEN}[安全防线]${RESET} 已自动熔断重型操作，降级拉取 防失联安全版 ..."
                bash <(curl -fsSL https://raw.githubusercontent.com/inimemail/nic-master/main/small.sh)
