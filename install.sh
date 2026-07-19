@@ -728,6 +728,7 @@ install_wg-udp(){
     echo -e "   3. WG-Raw-FEC"
     echo -e "   4. 📡 AWG 高级链路"
     echo -e "   5. 📡 WG + wstunnel + Nginx 高级链路"
+    echo -e "   6. 📡 WG + VLESS + REALITY 高级链路"
     echo -e "   0. 退出"
     echo -e "${GREEN}=========================${RESET}"
     read -rp " 请选择 [0-5]: " wg_choice
@@ -747,6 +748,9 @@ install_wg-udp(){
             ;;
         5)
             bash <(curl -Ls https://raw.githubusercontent.com/hiapb/wg-udp/main/wg_ws.sh)
+            ;;
+        6)
+            bash <(curl -Ls https://raw.githubusercontent.com/hiapb/wg-udp/main/wg_re.sh)
             ;;
         0)
             exit 0
