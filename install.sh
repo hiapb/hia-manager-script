@@ -750,7 +750,7 @@ install_wg-udp(){
             bash <(curl -Ls https://raw.githubusercontent.com/hiapb/wg-udp/main/wg_ws.sh)
             ;;
         6)
-            bash <(curl -Ls https://raw.githubusercontent.com/hiapb/wg-udp/main/wg_re.sh)
+            bash <(curl -Ls https://raw.githubusercontent.com/hiapb/wg-udp/main/wg-re.sh)
             ;;
         0)
             exit 0
