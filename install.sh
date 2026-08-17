@@ -406,6 +406,7 @@ install_nic-master() {
         echo -e " 1) ${GREEN}[虚拟化]${RESET} 非独服 (VPS / 云主机 / 虚拟机)"
         echo -e " 2) ${YELLOW}[裸金属]${RESET} 独立服务器 (物理机 / Dedicated Server)"
         echo -e " 3) ${BLUE}[SRT]${RESET} Live Relay SRT 代理管控工具"
+        echo -e " 4) ${BLUE}[SRT]${RESET} Live Relay 高级自适应调优"
         echo -e " 0) 返回上级菜单"
         echo -e "${BLUE}=====================================================${RESET}"
         read -r -p " 请输入选项 [0-3]: " env_choice
@@ -435,6 +436,11 @@ install_nic-master() {
             3)
                 echo -e "\n${BLUE}[处理中]${RESET} 正在拉取 Live Relay SRT 代理管控工具..."
                 bash <(curl -fsSL https://raw.githubusercontent.com/inimemail/nic-master/main/star.sh)
+                break
+                ;;
+            4)
+                echo -e "\n${BLUE}[处理中]${RESET} 正在拉取 Live Relay 高级自适应调优..."
+                bash <(curl -fsSL https://raw.githubusercontent.com/inimemail/nic-master/main/ntc.sh)
                 break
                 ;;
             0)
