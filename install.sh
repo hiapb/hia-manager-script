@@ -58,6 +58,8 @@ reinstall_system() {
     echo "13) Debian 13"
     echo "14) Debian 11(国内)"
     echo "15) Debian 11(国内备用)"
+    echo "16) Arch"
+    echo "17) Kali"
     echo "b) 返回"
     read -p "请选择: " os_choice
     case "$os_choice" in
@@ -76,6 +78,8 @@ reinstall_system() {
         13) curl -O https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh && sudo bash reinstall.sh debian 13 ;;
         14) curl -O https://git.tccc.eu.org/https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh && sudo bash reinstall.sh debian 11 ;;
         15) curl -sS -O https://git.tccc.eu.org/https://raw.githubusercontent.com/leitbogioro/Tools/master/Linux_reinstall/InstallNET.sh && bash InstallNET.sh -debian 11 -pwd 'hia123456' ;;
+        16) curl -O https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh && sudo bash reinstall.sh arch ;;
+        17) curl -O https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh && sudo bash reinstall.sh kali ;;
         b) exit 0 ;;
         *) echo -e "${RED}无效选项！${RESET}"; sleep 2; exit 1 ;;
     esac
